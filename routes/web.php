@@ -14,6 +14,7 @@
 Route::get('/', 'PagesController@home')->name('/');
 
 Route::get('/medicos/create', 'MedicosController@create')->name('addMedico');
+Route::post('/medicos/create', 'MedicosController@store')->name('storeMedico');
 
 Auth::routes();
 
