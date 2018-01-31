@@ -23,6 +23,7 @@ class CreateMedicosTable extends Migration
             $table->integer('num_colegiado')->unique();
             $table->text('curriculum');
             $table->integer('favoritos');
+            $table->boolean('destacado');
             $table->text('extra');
             $table->timestamps();
         });

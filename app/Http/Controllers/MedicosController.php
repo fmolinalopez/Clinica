@@ -13,7 +13,11 @@ class MedicosController extends Controller
     }
 
     public function store(CreateMedicoRequest $request){
+
+        $user = $request->user();
+
         Medico::create([
+            'user_id' => $user->id,
             'imagen'   => $request->input('imagen'),
             'nombre'    => $request->input('nombre'),
             'email'    => $request->input('email'),
@@ -22,6 +26,7 @@ class MedicosController extends Controller
             'num_colegiado'    => $request->input('num_colegiado'),
             'curriculum'    => $request->input('curriculum'),
             'favoritos' => 0,
+            'destacado' => false,
             'extra' => ''
         ]);
 

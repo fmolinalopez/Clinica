@@ -1,26 +1,53 @@
 @extends('layouts.app')
 
 @section('content')
+    {{--<div id="carousel-example-generic" class="carousel slide" data-interval="2000" data-ride="carousel">--}}
+        {{--<!-- Indicators -->--}}
+        {{--<ol class="carousel-indicators">--}}
+            {{--<li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>--}}
+            {{--<li data-target="#carousel-example-generic" data-slide-to="1"></li>--}}
+            {{--<li data-target="#carousel-example-generic" data-slide-to="2"></li>--}}
+        {{--</ol>--}}
+
+        {{--<!-- Wrapper for slides -->--}}
+        {{--<div class="carousel-inner" role="listbox">--}}
+            {{--<div class="item active">--}}
+                {{--<img src="http://s4.storage.akamai.coub.com/get/b117/p/coub/simple/cw_timeline_pic/e072b1c6a53/ac13a5ba9214cca216702/med_1513774597_image.jpg" alt="...">--}}
+                {{--<div class="carousel-caption">--}}
+                    {{--...--}}
+                {{--</div>--}}
+            {{--</div>--}}
+
+            {{--<div class="item">--}}
+                {{--<img src="https://images-na.ssl-images-amazon.com/images/I/51WrbkR56gL.jpg" alt="...">--}}
+                {{--<div class="carousel-caption">--}}
+                    {{--...--}}
+                {{--</div>--}}
+            {{--</div>--}}
+            {{--<div class="item">--}}
+                {{--<img src="https://images1.tiendanimal.es/g/2845_juguete_rana_sentada_perros_drnoys_kong.jpg" alt="...">--}}
+                {{--<div class="carousel-caption">--}}
+                    {{--...--}}
+                {{--</div>--}}
+            {{--</div>--}}
+            {{--...--}}
+        {{--</div>--}}
+
+        {{--<!-- Controls -->--}}
+        {{--<a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">--}}
+            {{--<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>--}}
+            {{--<span class="sr-only">Previous</span>--}}
+        {{--</a>--}}
+        {{--<a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">--}}
+            {{--<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>--}}
+            {{--<span class="sr-only">Next</span>--}}
+        {{--</a>--}}
+    {{--</div>--}}
     <div class="row text-center titulo">
         <h1>Lista de Médicos</h1>
     </div>
     @forelse($medicos as $medico)
-        <div class="row medicos">
-            <div class="col-md-12">
-                <div class="col-md-4">
-                    <img src="{{$medico['imagen']}}" alt="Imagen del médico">
-                </div>
-                <div class="col-md-7">
-                    <p><strong>Nombre:</strong>{{ $medico['nombre'] }}</p>
-                    <p><strong>Email:</strong>{{ $medico['email'] }}</p>
-                    <p><strong>Especialidad:</strong> {{ $medico['especialidad'] }}</p>
-                    <p><strong>Clinicas:</strong>{{ $medico['clinicas'] }}</p>
-                    <p><strong>Nº de colegiado:</strong>{{ $medico['num_colegiado'] }}</p>
-                    <p><strong>Curriculum:</strong>{{ $medico['curriculum'] }}</p>
-                    <p><strong>Favoritos:</strong>{{ $medico['favoritos'] }}</p>
-                </div>
-            </div>
-        </div>
+        @include('medicos.medico')
     @empty
         <p>No hay médicos para mostrar.</p>
     @endforelse

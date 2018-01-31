@@ -13,8 +13,12 @@
 
 Route::get('/', 'PagesController@home')->name('/');
 
-Route::get('/medicos/create', 'MedicosController@create')->name('addMedico');
-Route::post('/medicos/create', 'MedicosController@store')->name('storeMedico');
+Route::get('/medicos/create', 'MedicosController@create')->name('addMedico')->middleware('auth');
+Route::post('/medicos/create', 'MedicosController@store')->name('storeMedico')->middleware('auth');
+
+Route::get('/user/{userName}', 'UsersController@index')->name('userInfo');
+
+Route::get('/profile', 'ProfilesController@profile')->name('profile')->middleware('auth');
 
 Auth::routes();
 

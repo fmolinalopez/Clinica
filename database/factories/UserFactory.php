@@ -1,6 +1,7 @@
 <?php
 
 use Faker\Generator as Faker;
+use Carbon\Carbon as Carbon;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,9 +16,48 @@ use Faker\Generator as Faker;
 
 $factory->define(App\User::class, function (Faker $faker) {
     return [
-        'name' => $faker->name,
-        'email' => $faker->unique()->safeEmail,
+        'name' => $name = $faker->firstName,
+        'lastName' => $lastName = $faker->lastName,
+        'userName' => strtolower($name) . "." . strtolower($lastName),
+        'email' => strtolower($name) . "." . strtolower($lastName) . "@" . $faker->freeEmailDomain,
+        'avatar' => 'public/images/pic.jpeg',
+        'num_sanitario' => $faker->randomNumber(9) . generarUltimosNumerosSanitarios(),
+        'birthdate' => $faker->date('Y-m-d'),
+        'dni' => $faker->randomNumber(8) . generarLetra(),
+        'movil' => $faker->e164PhoneNumber,
+        'website' => $faker->url,
+        'about' => $faker->paragraph,
         'password' => '$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm', // secret
         'remember_token' => str_random(10),
     ];
 });
+
+function generarLetra(){
+    $num = mt_rand(1,10);
+    switch ($num){
+        case 1:
+            return 'A';
+        case 2:
+            return 'B';
+        case 3:
+            return 'C';
+        case 4:
+            return 'D';
+        case 5:
+            return 'E';
+        case 6:
+            return 'F';
+        case 7:
+            return 'G';
+        case 8:
+            return 'H';
+        case 9:
+            return 'I';
+        case 10:
+            return 'J';
+    }
+}
+
+function generarUltimosNumerosSanitarios(){
+    return mt_rand(10,99);
+}
