@@ -37,20 +37,8 @@
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
-                        {{--<li><img src="/images/pic.jpeg" alt=""></li>&nbsp;--}}
                         <li><a href="{{ route('addMedico') }}">Añadir un Médico</a></li>
-                        {{--<li class="dropdown">--}}
-                            {{--<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Info <span class="caret"></span></a>--}}
-                            {{--<ul class="dropdown-menu">--}}
-                                {{--<li><a href="#">Medicos</a></li>--}}
-                                {{--<li><a href="#">Pacientes</a></li>--}}
-                                {{--<li><a href="#">Citas</a></li>--}}
-                                {{--<li role="separator" class="divider"></li>--}}
-                                {{--<li><a href="#">Info Clínicas</a></li>--}}
-                            {{--</ul>--}}
-                        {{--</li>--}}
                     </ul>
-
 
                     <!-- Right Side Of Navbar -->
                     <ul class="nav navbar-nav navbar-right">
@@ -87,9 +75,7 @@
             </div>
         </nav>
 
-        <div class="container main-area">
-            @yield('content')
-        </div>
+        @yield('content')
     </div>
 
     <!-- Scripts -->
