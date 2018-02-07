@@ -10,9 +10,8 @@
             </div>
         </div>
 
-        @foreach($medicos as $medico)
-            @include('medicos.medico')
-        @endforeach
-        <div class="centro">{{ $medicos->links('pagination::bootstrap-4') }}</div>
+        <div id="listado">
+            @include('medicos.lista');
+        </div>
     </div>
 @endsection

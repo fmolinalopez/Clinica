@@ -12,6 +12,7 @@
 */
 
 Route::get('/', 'PagesController@home')->name('/');
+Route::get('/obtenerPaginaMedicos/', 'PagesController@obtenerPaginaMedicos');
 
 Route::get('/medicos/create', 'MedicosController@create')->name('addMedico')->middleware('auth');
 Route::post('/medicos/create', 'MedicosController@store')->name('storeMedico')->middleware('auth');

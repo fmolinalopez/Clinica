@@ -8,7 +8,7 @@
             <p><strong>Email:</strong>{{ $medico['email'] }}</p>
             <p><strong>Especialidad:</strong> {{ $medico['especialidad'] }}</p>
             <p><strong>Clinicas:</strong>
-                @foreach($medico->clinicas()->paginate(10) as $clinica)
+                @foreach($medico->clinicas()->get() as $clinica)
                 <h5><span class="badge badge-secondary">{{ $clinica->nombre }}</span></h5>
                 @endforeach
             </p>
