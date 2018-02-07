@@ -1,7 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
-    <h1>Añadir un nuevo médico</h1>
+    <div class="text-center titulo">
+        <h1>Añadir un nuevo médico</h1>
+    </div>
 
     <form action="{{ route('storeMedico') }}" method="post">
         {{ csrf_field() }}

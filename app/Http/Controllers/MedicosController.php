@@ -12,6 +12,15 @@ class MedicosController extends Controller
         return view('medicos.create');
     }
 
+    public function clinicas($nombreMedico){
+
+        $medico = Medico::where('nombre', $nombreMedico)->first();
+
+        return view('medicos.clinicas', [
+            'medico' => $medico,
+        ]);
+    }
+
     public function store(CreateMedicoRequest $request){
 
         $user = $request->user();

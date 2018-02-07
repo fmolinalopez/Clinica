@@ -12,13 +12,20 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         // $this->call(UsersTableSeeder::class);
-        /**
-         * Seeder que crea 20 usuarios con 10 medicos por cada uno
-         */
-        factory(App\User::class, 20)->create()->each(function (App\User $user){
 
-            factory(\App\Medico::class,10)->create(['user_id' => $user->id]);
+        $users = factory(App\User::class, 20)->create();
 
+        $clinicas = factory(App\Clinica::class, 10)->create();
+
+        $users->each(function (App\User $user) use ($users, $clinicas){
+
+            $medicos = factory(\App\Medico::class,10)->create(['user_id' => $user->id]);
+
+            $medicos->each(function (App\Medico $medico) use ($users, $clinicas){
+               $medico->clinicas()->sync(
+                   $clinicas->random(mt_rand(1,5))
+               );
+            });
         });
     }
 }

@@ -15,6 +15,7 @@ Route::get('/', 'PagesController@home')->name('/');
 
 Route::get('/medicos/create', 'MedicosController@create')->name('addMedico')->middleware('auth');
 Route::post('/medicos/create', 'MedicosController@store')->name('storeMedico')->middleware('auth');
+Route::get('/{nombreMedico}/clinicas', 'MedicosController@clinicas')->name('clinicas');
 
 Route::get('/user/{userName}', 'UsersController@index')->name('userInfo');
 
@@ -28,6 +29,10 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
 
 Auth::routes();
 

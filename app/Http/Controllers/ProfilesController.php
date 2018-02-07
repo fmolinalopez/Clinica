@@ -7,8 +7,8 @@ use Illuminate\Support\Facades\Auth;
 
 class ProfilesController extends Controller
 {
-    public function profile(){
-        $user = Auth::user();
+    public function profile(Request $request){
+        $user = $request->user();
 
         return view('profiles.profile', [
             'user' => $user
