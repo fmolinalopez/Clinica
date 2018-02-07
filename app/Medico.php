@@ -22,4 +22,8 @@ class Medico extends Model
     public function clinicas(){
         return $this->belongsToMany(Clinica::class);
     }
+
+    public static function obtenerClinicas($medico){
+        return $medico->clinicas()->get();
+    }
 }

@@ -8,8 +8,8 @@
             <p><strong>Email:</strong>{{ $medico['email'] }}</p>
             <p><strong>Especialidad:</strong> {{ $medico['especialidad'] }}</p>
             <p><strong>Clinicas:</strong>
-                @foreach($medico->clinicas()->get() as $clinica)
-                <h5><span class="badge badge-secondary">{{ $clinica->nombre }}</span></h5>
+                @foreach(\App\Medico::obtenerClinicas($medico) as $clinica)
+                    <h5><span class="badge badge-secondary">{{ $clinica->nombre }}</span></h5>
                 @endforeach
             </p>
             <p><strong>Nº de colegiado:</strong>{{ $medico['num_colegiado'] }}</p>
