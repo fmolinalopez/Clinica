@@ -4,7 +4,7 @@
     <div class="text-center titulo">
         <h1>Clinicas a las que pertenece {{ $medico['nombre']}}</h1>
     </div>
-    @forelse($medico->clinicas()->paginate(10) as $clinica)
+    @forelse($medico->clinicas as $clinica)
         <div class="row medicos">
             <div class="col-md-4"></div>
             <div class="col">
