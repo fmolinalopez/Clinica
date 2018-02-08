@@ -11,8 +11,6 @@ class PagesController extends Controller
     public function home(){
         $medicos = Medico::orderBy('created_at', 'desc')->paginate(10);
 
-//        $medicos = Medico::with('clinica')->get();
-
         return view('home', [
             'medicos' => $medicos,
         ]);

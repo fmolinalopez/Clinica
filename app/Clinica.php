@@ -11,8 +11,4 @@ class Clinica extends Model
     public function medicos(){
         return $this->belongsToMany(Medico::class);
     }
-
-    public static function obtenerMedicos($clinica){
-        return $clinica->medicos()->get();
-    }
 }

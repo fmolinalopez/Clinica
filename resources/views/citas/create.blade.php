@@ -1,7 +1,5 @@
 @extends('layouts.app')
 
-{{--TODO Al crear un medico deben añadirsele las clinicas selecionadas.(attach)--}}
-
 @section('content')
     <div class="text-center titulo">
         <h1>Añadir un nuevo médico</h1>

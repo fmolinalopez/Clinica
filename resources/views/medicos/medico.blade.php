@@ -8,7 +8,7 @@
             <p><strong>Email:</strong>{{ $medico['email'] }}</p>
             <p><strong>Especialidad:</strong> {{ $medico['especialidad'] }}</p>
             <p><strong>Clinicas:</strong>
-                @foreach(\App\Medico::obtenerClinicas($medico) as $clinica)
+                @foreach($medico->clinicas as $clinica)
                     <h5><span class="badge badge-secondary">{{ $clinica->nombre }}</span></h5>
                 @endforeach
             </p>
