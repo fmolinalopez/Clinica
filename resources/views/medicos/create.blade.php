@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+{{--TODO Al crear un medico deben añadirsele las clinicas selecionadas.(attach)--}}
+
 @section('content')
     <div class="text-center titulo">
         <h1>Añadir un nuevo médico</h1>
@@ -56,16 +58,18 @@
         @endif
 
         <div class="form-group  {{$errors->has('clinicas') ? ' has-error' : ''}}">
-            <label for="clinicas">Clinicas</label>
-            <input class="form-control" type="text" id="clinicas" name="clinicas" value="{{ old('clinicas')}}" >
+            <div class="btn-group">
+                <button type="button" class="btn btn-primary clinicas">Clínicas</button>
+                <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split clinicas" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <span class="sr-only">Toggle Dropdown</span>
+                </button>
+                <ul class="dropdown-menu">
+                    @foreach($clinicas as $clinica)
+                        <li><a href="#" class="small" data-value="{{$clinica->id}}" tabIndex="-1"><input type="checkbox"/>&nbsp;{{$clinica->nombre}}</a></li>
+                    @endforeach
+                </ul>
+            </div>
         </div>
-        @if($errors->has('clinicas'))
-            @foreach($errors->get('clinicas') as $message)
-                <div class="alert alert-danger" role="alert">
-                    {{ $message }}
-                </div>
-            @endforeach
-        @endif
 
         <div class="form-group  {{$errors->has('num_colegiado') ? ' has-error' : ''}}">
             <label for="num_colegiado">Nº de colegiado</label>
@@ -95,5 +99,7 @@
             <button type="submit" class="btn btn-success">Crear</button>
         </div>
     </form>
-    </div>
+    @push('scripts')
+        <script src="{{ asset('js/dropdown.js') }}" defer></script>
+    @endpush
 @endsection

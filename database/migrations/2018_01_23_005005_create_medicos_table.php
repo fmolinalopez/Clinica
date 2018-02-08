@@ -19,7 +19,6 @@ class CreateMedicosTable extends Migration
             $table->string('nombre');
             $table->string('email')->unique();
             $table->string('especialidad');
-            $table->text('clinicas');
             $table->integer('num_colegiado')->unique();
             $table->text('curriculum');
             $table->integer('favoritos');

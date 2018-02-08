@@ -30,6 +30,7 @@
                 <div class="navbar navbar-toggleable-md navbar-light bg-faded">
                     <ul class="navbar-nav">
                         <li class="nav-item active"><a href="{{ route('addMedico') }}" class="nav-link">Añadir Medico</a></li>
+                        <li class="nav-item active"><a href="{{ route('askCita') }}" class="nav-link">Pedir Cita</a></li>
                     </ul>
                 </div>
 

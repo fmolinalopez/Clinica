@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Clinica;
 use App\Http\Requests\CreateMedicoRequest;
 use App\Medico;
 use Illuminate\Http\Request;
@@ -9,7 +10,11 @@ use Illuminate\Http\Request;
 class MedicosController extends Controller
 {
     public function create(){
-        return view('medicos.create');
+        $clinicas = Clinica::all();
+
+        return view('medicos.create', [
+            'clinicas' => $clinicas,
+        ]);
     }
 
     public function clinicas($nombreMedico){
@@ -31,7 +36,6 @@ class MedicosController extends Controller
             'nombre'    => $request->input('nombre'),
             'email'    => $request->input('email'),
             'especialidad'    => $request->input('especialidad'),
-            'clinicas'    => $request->input('clinicas'),
             'num_colegiado'    => $request->input('num_colegiado'),
             'curriculum'    => $request->input('curriculum'),
             'favoritos' => 0,

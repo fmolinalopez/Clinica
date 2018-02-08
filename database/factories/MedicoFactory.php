@@ -15,7 +15,6 @@ $factory->define(App\Medico::class, function (Faker $faker) {
         'nombre'     => $name = $faker->name,
         'email'      => str_replace('\'', '', (str_replace(' ', '', strtolower($name)))) . '@' . $faker->freeEmailDomain,
         'especialidad' => $faker->sentence,
-        'clinicas' => $faker->paragraph,
         'num_colegiado' => $faker->unique()->numberBetween(10000, 99999),
         'curriculum' => $faker->text,
         'favoritos' => $favs = $faker->numberBetween(1, 99),
