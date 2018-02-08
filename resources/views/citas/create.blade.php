@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="text-center titulo">
-        <h1>Añadir un nuevo médico</h1>
+        <h1>Pedir una cita</h1>
     </div>
 
     <div id="cita">
