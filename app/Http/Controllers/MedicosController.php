@@ -29,8 +29,10 @@ class MedicosController extends Controller
     public function store(CreateMedicoRequest $request){
 
         $user = $request->user();
+        $clinicasId = $request->input('clinica');
+        $clinicas = Clinica::wherein("id", $clinicasId)->get();
 
-        Medico::create([
+        $medico = Medico::create([
             'user_id' => $user->id,
             'imagen'   => $request->input('imagen'),
             'nombre'    => $request->input('nombre'),
@@ -42,6 +44,8 @@ class MedicosController extends Controller
             'destacado' => false,
             'extra' => ''
         ]);
+
+        $medico->clinicas()->sync($clinicas);
 
         return redirect('/');
     }

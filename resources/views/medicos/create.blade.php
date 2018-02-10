@@ -65,7 +65,7 @@
                 </button>
                 <ul class="dropdown-menu">
                     @foreach($clinicas as $clinica)
-                        <li><a href="#" class="small" data-value="{{$clinica->id}}" tabIndex="-1"><input type="checkbox"/>&nbsp;{{$clinica->nombre}}</a></li>
+                        <li><a href="#" class="small" data-value="{{$clinica->id}}" tabIndex="-1"><input type="checkbox" value="{{$clinica->id}}" name="clinica[]"/>&nbsp;{{$clinica->nombre}}</a></li>
                     @endforeach
                 </ul>
             </div>

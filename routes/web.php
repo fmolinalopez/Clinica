@@ -23,8 +23,10 @@ Route::get('/user/{userName}', 'UsersController@index')->name('userInfo');
 Route::get('/profile', 'ProfilesController@profile')->name('profile')->middleware('auth');
 
 Route::get('/cita', 'CitasController@crearCita')->name('askCita')->middleware('auth');
-Route::post('/cita', 'CitasController@store')->name('crearCita')->middleware('auth');
+Route::post('/cita/crear', 'CitasController@store')->name('crearCita')->middleware('auth');
+Route::post('/cita/validar', 'CitasController@validar')->name('validarCita')->middleware('auth');
 Route::get('/obtenerMedicosClinica/{idClinica}', 'CitasController@obtenerMedicosClinica');
+//Route::get('/obtenerCitasMedico/{idMedico}', 'CitasController@obtenerCitasMedico');
 
 Auth::routes();
 

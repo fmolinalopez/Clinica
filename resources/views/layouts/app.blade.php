@@ -13,6 +13,7 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/medicos.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/jquery.datetimepicker.min.css') }}" rel="stylesheet">
     @stack('scripts')
 </head>
 <body>
@@ -74,5 +75,7 @@
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
     <script src="{{ asset('js/edad.js') }}"></script>
+    <script src="{{ asset('js/jquery.datetimepicker.full.js') }}"></script>
 </body>
+
 </html>

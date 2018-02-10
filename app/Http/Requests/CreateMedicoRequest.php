@@ -31,7 +31,7 @@ class CreateMedicoRequest extends FormRequest
                 'required', 'string'
             ],
             'email' => [
-                'required',
+                'required', 'unique:medicos'
             ],
             'especialidad' => [
                 'required', 'max:255', 'string'
@@ -40,7 +40,7 @@ class CreateMedicoRequest extends FormRequest
 //                'required'
 //            ],
             'num_colegiado' => [
-                'required', 'integer'
+                'required', 'integer', 'unique:medicos'
             ],
             'curriculum' => [
                 'required', 'string'
@@ -63,6 +63,7 @@ class CreateMedicoRequest extends FormRequest
             'nombre.required' => 'El campo Nombre es obligatorio',
             'nombre.string' => 'El campo Nombre debe de ser una cadena de caracteres',
             'email.required' => 'El campo Email es obligatorio',
+            'email.unique' => 'Ese email ya existe',
 //            'email.unique' => 'El email ya esta en uso',
             'especialidad.required' => 'El campo Especialidad es obligatorio',
             'especialidad.max:255' => 'El campo Especialidad no puede contener mas de 255 caracteres',
@@ -70,6 +71,7 @@ class CreateMedicoRequest extends FormRequest
 //            'clinicas.required' => 'El campo Clinicas es obligatorio',
             'num_colegiado.required' => 'El campo Nº de colegiado es obligatorio',
             'num_colegiado.integer' => 'El campo Nº de colegiado debe constar solo de numeros enteros',
+            'num_colegiado.unique' => 'Ese Nº de colegiado ya existe',
             'curriculum.required' => 'El campo Curriculum es obligatorio',
             'curriculum.string' => 'El campo Curriculum debe de ser una cadena de caracteres',
         ];
