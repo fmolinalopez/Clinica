@@ -16,11 +16,14 @@ Route::get('/obtenerPaginaMedicos/', 'PagesController@obtenerPaginaMedicos');
 
 Route::get('/medicos/create', 'MedicosController@create')->name('addMedico')->middleware('auth');
 Route::post('/medicos/create', 'MedicosController@store')->name('storeMedico')->middleware('auth');
+Route::post('/medicos/validar', 'MedicosController@validar')->middleware('auth');
 Route::get('/{nombreMedico}/clinicas', 'MedicosController@clinicas')->name('clinicas');
 
 Route::get('/user/{userName}', 'UsersController@index')->name('userInfo');
 
 Route::get('/profile', 'ProfilesController@profile')->name('profile')->middleware('auth');
+
+Route::get('/citas', 'CitasController@showCitasUsuario')->middleware('auth');
 
 Route::get('/cita', 'CitasController@crearCita')->name('askCita')->middleware('auth');
 Route::post('/cita/crear', 'CitasController@store')->name('crearCita')->middleware('auth');

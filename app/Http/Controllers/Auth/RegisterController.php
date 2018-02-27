@@ -78,7 +78,7 @@ class RegisterController extends Controller
             'birthdate' => $data['birthdate'],
             'dni' => $data['dni'],
             'movil' => $data['movil'],
-            'avatar' => 'https://instrumentalfx.co/wp-content/uploads/2018/01/Uganda-Knuckles-300x300.jpg',
+            'avatar' => 'http://sprintresources.com/wp-content/uploads/2016/12/icon-user.png',
             'password' => bcrypt($data['password']),
         ]);
     }

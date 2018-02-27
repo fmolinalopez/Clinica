@@ -3,11 +3,10 @@
 {{--TODO Al crear un medico deben añadirsele las clinicas selecionadas.(attach)--}}
 
 @section('content')
-    <div class="text-center titulo">
+    <div class="text-center ">
         <h1>Añadir un nuevo médico</h1>
     </div>
-
-    <form action="{{ route('storeMedico') }}" method="post">
+    <form action="{{ route('storeMedico') }}" id="medicoForm" method="post">
         {{ csrf_field() }}
         <div class="form-group  {{$errors->has('imagen') ? ' has-error' : ''}}">
             <label for="imagen">Imagen</label>
@@ -58,22 +57,24 @@
         @endif
 
         <div class="form-group  {{$errors->has('clinicas') ? ' has-error' : ''}}">
-            <div class="btn-group">
-                <button type="button" class="btn btn-primary clinicas">Clínicas</button>
-                <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split clinicas" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <span class="sr-only">Toggle Dropdown</span>
-                </button>
-                <ul class="dropdown-menu">
-                    @foreach($clinicas as $clinica)
-                        <li><a href="#" class="small" data-value="{{$clinica->id}}" tabIndex="-1"><input type="checkbox" value="{{$clinica->id}}" name="clinica[]"/>&nbsp;{{$clinica->nombre}}</a></li>
-                    @endforeach
-                </ul>
-            </div>
+            <label for="clinicas">Clinicas</label><br>
+            <select class="js-example-basic-multiple" name="clinicas[]" id="clinicas" multiple="multiple">
+                @foreach($clinicas as $clinica)
+                    <option value="{{$clinica->id}}" >{{$clinica->nombre}}</option>
+                @endforeach
+            </select>
+            @if($errors->has('clinicas'))
+                @foreach($errors->get('clinicas') as $message)
+                    <div class="alert alert-danger" role="alert">
+                        {{ $message }}
+                    </div>
+                @endforeach
+            @endif
         </div>
 
         <div class="form-group  {{$errors->has('num_colegiado') ? ' has-error' : ''}}">
             <label for="num_colegiado">Nº de colegiado</label>
-            <input class="form-control" type="number" id="num_colegiado" name="num_colegiado" value="{{ old('num_colegiado')}}" >
+            <input class="form-control" type="text" id="num_colegiado" name="num_colegiado" value="{{ old('num_colegiado')}}" >
         </div>
         @if($errors->has('num_colegiado'))
             @foreach($errors->get('num_colegiado') as $message)
@@ -96,10 +97,12 @@
         @endif
 
         <div class="form-group">
-            <button type="submit" class="btn btn-success">Crear</button>
+            <button type="submit" id="crearMedico" class="btn btn-success">Crear</button>
         </div>
     </form>
     @push('scripts')
-        <script src="{{ asset('js/dropdown.js') }}" defer></script>
+        <script src="{{ asset('js/validarMedico.js') }}" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js" defer></script> // Cdn del componente multiselect
+        <script src="{{ asset('js/multiselect.js') }}" defer></script>
     @endpush
 @endsection

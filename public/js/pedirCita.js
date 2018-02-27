@@ -1,10 +1,13 @@
 function obtenerMedicosClinica(){
+
+    $('#spinner').show();
     let idClinica = $(event.target).val();
 
     console.log("id Clinica: " + idClinica);
 
     axios.get(`/obtenerMedicosClinica/${idClinica}`)
         .then(function(response){
+            $('#spinner').show();
             $("#app").html(response.data);
             asociarEventosClinicaMedico();
         }).catch(function (error) {
@@ -19,7 +22,6 @@ function obtenerCitasMedico() {
     cargarDatetimepicker();
     $('.hora').removeAttr("hidden");
     $('#pedirCita').removeAttr("hidden");
-    $("#datetimepicker").on("blur", validarFecha);
 }
 
 function validarFecha() {
@@ -27,7 +29,7 @@ function validarFecha() {
     myHeaders.append("X-CSRF-TOKEN", $('meta[name="csrf-token"]').attr('content'));
     let form = new FormData();
     let idMedico = $('#medicos').val();
-    let fecha = $(event.target).val();
+    let fecha = $('#datetimepicker').val();
     console.log("fecha: " + fecha);
     form.append("fecha", fecha);
     form.append("idMedico", idMedico);
@@ -102,6 +104,11 @@ function cargarDatetimepicker(){
         formatTime:'H:i',
         minDate:'+1970/01/02',//yesterday is minimum date(for today use 0 or -1970/01/01)
         maxDate:'+1970/04/01',//tomorrow is maximum date calendar
-        allowTimes:cargarHoras()
+        allowTimes:cargarHoras(),
+        closeOnWithoutClick:true,
+        onClose: function () {
+            console.log("test");
+            validarFecha();
+        }
     });
 }

@@ -19,9 +19,19 @@ class CitasController extends Controller
         ]);
     }
 
+    public function showCitasUsuario()
+    {
+        $user = Auth::user();
+        $citas = $user->citas()->latest()->paginate(10);
+
+        return view('users.citas', [
+            'citas' => $citas,
+        ]);
+    }
+
     public function store(Request $request){
         $user = Auth::user();
-        $medico = Medico::where("id", 1)->first();
+        $medico = Medico::where("id", $request->input('medico'))->first();
         $fecha =  $request->input('horaCita');
 
         $cita = Cita::create([
@@ -30,7 +40,7 @@ class CitasController extends Controller
             'fecha_cita' => $fecha,
         ]);
 
-        return redirect('/');
+        return redirect('/citas');
     }
 
     public function obtenerMedicosClinica($idClinica){

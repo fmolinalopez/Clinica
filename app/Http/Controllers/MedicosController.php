@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Clinica;
+use App\Http\Requests\CreateMedicoAjaxRequest;
 use App\Http\Requests\CreateMedicoRequest;
 use App\Medico;
 use Illuminate\Http\Request;
@@ -26,11 +27,18 @@ class MedicosController extends Controller
         ]);
     }
 
+    public function validar(CreateMedicoAjaxRequest $request){
+        // Obtenemos todos los valores y devolvemos un array vacio
+        return array();
+    }
+
     public function store(CreateMedicoRequest $request){
 
         $user = $request->user();
-        $clinicasId = $request->input('clinica');
+        $clinicasId = $request->input('clinicas');
+        dd($clinicasId);
         $clinicas = Clinica::wherein("id", $clinicasId)->get();
+
 
         $medico = Medico::create([
             'user_id' => $user->id,

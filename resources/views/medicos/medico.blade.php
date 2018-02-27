@@ -1,5 +1,5 @@
 <div class="row medicos">
-        <div class="col-md-4">
+        <div class="col-lg-4">
             <p><strong>Creado por:</strong><a href="/user/{{$medico->user->userName}}">{{$medico->user->userName}}</a></p>
             <img src="{{$medico['imagen']}}" alt="Imagen del médico">
         </div>
