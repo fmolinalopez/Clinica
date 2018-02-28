@@ -102,7 +102,7 @@
     </form>
     @push('scripts')
         <script src="{{ asset('js/validarMedico.js') }}" defer></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js" defer></script> // Cdn del componente multiselect
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js" defer></script> <!-- Cdn del componente multiselect-->
         <script src="{{ asset('js/multiselect.js') }}" defer></script>
     @endpush
 @endsection

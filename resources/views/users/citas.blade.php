@@ -21,5 +21,5 @@
             @endforeach
         </div>
     @endforeach
-    {{ $citas->links() }}
+    {{ $citas->links('pagination::bootstrap-4') }}
 @endsection

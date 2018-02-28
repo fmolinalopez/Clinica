@@ -63,11 +63,14 @@ class CitasController extends Controller
         $medico = Medico::where('id', $idMedico)->first();
         $fecha = $_POST['fecha'];
         $checkFecha = $medico->citas()->where('fecha_cita', $fecha)->first();
-        if ( $checkFecha !== null ) {
-            return array("picked");
-        } else {
-            return array();
-
+        if ($fecha === ""){
+            return array("noDate");
+        }else{
+            if ( $checkFecha !== null) {
+                return array("picked");
+            } else {
+                return array();
+            }
         }
     }
 
