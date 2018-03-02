@@ -22,6 +22,11 @@ Route::get('/{nombreMedico}/clinicas', 'MedicosController@clinicas')->name('clin
 Route::get('/user/{userName}', 'UsersController@index')->name('userInfo');
 
 Route::get('/profile', 'ProfilesController@profile')->name('profile')->middleware('auth');
+Route::get('/profile/edit', 'ProfilesController@edit')->middleware('auth');
+Route::get('/profile/personal', 'ProfilesController@edit')->name('profile.personal')->middleware('auth');
+Route::get('/profile/account', 'ProfilesController@edit')->name('profile.account')->middleware('auth');
+Route::get('/profile/avatar', 'ProfilesController@edit')->name('profile.avatar')->middleware('auth');
+Route::get('/profile/additional', 'ProfilesController@edit')->name('profile.additional')->middleware('auth');
 
 Route::get('/citas', 'CitasController@showCitasUsuario')->middleware('auth');
 

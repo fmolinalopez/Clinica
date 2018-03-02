@@ -14,4 +14,12 @@ class ProfilesController extends Controller
             'user' => $user
         ]);
     }
+
+    public function edit(Request $request){
+        $user = Auth::user();
+
+        return view('profiles.edit', [
+            'user' => $user
+        ]);
+    }
 }

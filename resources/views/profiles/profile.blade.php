@@ -29,7 +29,7 @@
                 </div>
         </div>
         <div class="card-footer bg-primary">
-            <button class="btn btn-primary">Editar perfil</button>
+            <a href="/profile/edit"><button class="btn btn-primary">Editar perfil</button></a>
             <a href="/citas"><button class="btn btn-primary">Mostrar Citas</button></a>
         </div>
     </div>
