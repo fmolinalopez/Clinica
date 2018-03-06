@@ -1,6 +1,6 @@
 function obtenerMedicosClinica(){
 
-    $('#spinner').show();
+    // $('#spinner').show();
     let idClinica = $(event.target).val();
 
     console.log("id Clinica: " + idClinica);
@@ -8,7 +8,8 @@ function obtenerMedicosClinica(){
     axios.get(`/obtenerMedicosClinica/${idClinica}`)
         .then(function(response){
             $('#spinner').show();
-            $("#app").html(response.data);
+            $("#selectMedico").empty();
+            $("#selectMedico").append(response.data);
             asociarEventosClinicaMedico();
         }).catch(function (error) {
         console.log(error);

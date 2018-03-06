@@ -45,12 +45,10 @@ class CitasController extends Controller
 
     public function obtenerMedicosClinica($idClinica){
         if (request()->ajax()){
-            $clinicas = Clinica::all();
             $selectedClinicaId = $idClinica;
             $selectedClinica = Clinica::where('id', $selectedClinicaId)->first();
 
-            return View::make('citas.create', array(
-                'clinicas' => $clinicas,
+            return View::make('citas.selectMedico', array(
                 'selectedClinica' => $selectedClinica,
             ))->render();
         }else {
@@ -73,22 +71,4 @@ class CitasController extends Controller
             }
         }
     }
-
-//    public function obtenerCitasMedico($idMedico, Request $request){
-//        if (request()->ajax()){
-//            $clinicas = Clinica::all();
-//            $selectedClinicaId = $request->input(['clinica']);
-//            $selectedClinica = Clinica::where('id', $selectedClinicaId)->first();
-//            $selectedMedicoId = $idMedico;
-//            $selectedMedico = Clinica::where('id', $selectedMedicoId)->first();
-//
-//            return View::make('citas.create', array(
-//                'clinicas' => $clinicas,
-//                'selectedClinica' => $selectedClinica,
-//                'selectedMedico' => $selectedMedico,
-//            ))->render();
-//        }else {
-//            return redirect('/');
-//        }
-//    }
 }
