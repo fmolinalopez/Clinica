@@ -10,7 +10,7 @@
     </div>
 
     <div id="listado">
-        @include('medicos.lista');
+        @include('medicos.lista')
     </div>
 
 @endsection

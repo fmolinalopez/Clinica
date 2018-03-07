@@ -12,7 +12,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/medicos.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/clinica.css') }}" rel="stylesheet">
     <link href="{{ asset('css/jquery.datetimepicker.min.css') }}" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" /> <!-- Cdn del componente multiselect -->
     @stack('scripts')
@@ -68,10 +68,20 @@
             </div>
         </nav>
 
-        <div class="container main-area">
+        <div class="container main-area mb-5">
             @yield('content')
         </div>
     </div>
+
+    <footer class="footer bg-primary">
+        <div>
+            <span>
+                <strong>
+                    JEJE
+                </strong>
+            </span>
+        </div>
+    </footer>
 
 
     <!-- Scripts -->
