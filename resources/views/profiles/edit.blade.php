@@ -1,39 +1,56 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="row">
-        <div class="col-lg-12">
-            <table class="table mt-4">
-                <thead class="table-bordered table-striped">
-                  <tr class="thead-dark">
-                      <th id="personal" class="{{ Request::is('profile/personal') ? 'bg-light' : ''  }}" scope="col"><a href="#">Informacion Personal</a></th>
-                      <th id="account" class="{{ Request::is('profile/account') ? 'bg-light' : ''  }}" scope="col"><a href="#">Cuenta</a></th>
-                      <th id="avatar" class="{{ Request::is('profile/avatar') ? 'bg-light' : ''  }}" scope="col"><a href="#">Avatar</a></th>
-                      <th id="additional" class="{{ Request::is('profile/additional') ? 'bg-light' : ''  }}" scope="col"><a href="#">Informacion Adicional</a></th>
-                  </tr>
-                </thead>
-            </table>
+    <div class="card text-center mt-5">
+        <div class="card-header bg-primary">
+            <h1>Edita tu perfil</h1>
+            <div class="col-lg-12">
+                <table class="table mt-4">
+                    <thead class="table-bordered table-striped">
+                    <tr class="thead-dark">
+                        <th id="personal" class="{{ Request::is('profile/personal') ? 'bg-light' : ''  }} text-primary"
+                            scope="col">Informacion Personal
+                        </th>
+                        <th id="account" class="{{ Request::is('profile/account') ? 'bg-light' : ''  }} text-primary"
+                            scope="col">Cuenta
+                        </th>
+                        <th id="avatar" class="{{ Request::is('profile/avatar') ? 'bg-light' : ''  }} text-primary"
+                            scope="col">Avatar
+                        </th>
+                        <th id="additional"
+                            class="{{ Request::is('profile/additional') ? 'bg-light' : ''  }} text-primary" scope="col">
+                            Informacion Adicional
+                        </th>
+                    </tr>
+                    </thead>
+                </table>
+            </div>
         </div>
-        <div class="col-lg-12">
-            @if( session('exito'))
+        <div class="card-body">
+            <div class="col-lg-12">
+                @if( session('exito'))
+                    <h1>Perfil actualisado cabesa</h1>
+                @elseif( session('error'))
+                    <h1>La cagaste puto</h1>
+                @endif
+                <form id="editForm" action="/profile/edit" method="POST">
+                    {{ csrf_field() }}
 
-            @elseif( session('error'))
-
-            @endif
-            <form action="{{ Request::url() }}" method="POST">
-                {{ csrf_field() }}
-
-                <div id="chosenInfo"></div>
-                {{--@if( Request::is('profile/personal'))--}}
+                    <div id="chosenInfo"></div>
+                    {{--@if( Request::is('profile/personal'))--}}
                     {{--@include('profiles.partials.personal')--}}
-                {{--@elseif( Request::is('profile/account'))--}}
+                    {{--@elseif( Request::is('profile/account'))--}}
                     {{--@include('profiles.partials.account')--}}
-                {{--@elseif( Request::is('profile/avatar'))--}}
+                    {{--@elseif( Request::is('profile/avatar'))--}}
                     {{--@include('profiles.partials.avatar')--}}
-                {{--@elseif( Request::is('profile/additional'))--}}
+                    {{--@elseif( Request::is('profile/additional'))--}}
                     {{--@include('profiles.partials.additional')--}}
-                {{--@endif--}}
-            </form>
+                    {{--@endif--}}
+                </form>
+            </div>
+        </div>
+        <div class="card-footer bg-primary">
+            <button id="editButton" class="btn btn-primary">Actualizar perfil</button>
         </div>
     </div>
     @push('scripts')

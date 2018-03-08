@@ -22,8 +22,9 @@ Route::get('/{nombreMedico}/clinicas', 'MedicosController@clinicas')->name('clin
 Route::get('/user/{userName}', 'UsersController@index')->name('userInfo');
 
 Route::get('/profile', 'ProfilesController@profile')->name('profile')->middleware('auth');
-Route::get('/profile/edit', 'ProfilesController@edit')->middleware('auth');
-Route::get('/profile/personal', 'ProfilesController@asd')->middleware('auth');
+Route::get('/profile/edit', 'ProfilesController@edit')->name('profile.edit')->middleware('auth');
+Route::patch('/profile/edit', 'ProfilesController@update')->middleware('auth');
+Route::get('/profile/personal', 'ProfilesController@datosPersonales')->middleware('auth');
 Route::get('/profile/account', 'ProfilesController@datosCuenta')->middleware('auth');
 Route::get('/profile/avatar', 'ProfilesController@datosAvatar')->middleware('auth');
 Route::get('/profile/additional', 'ProfilesController@datosAdicionales')->middleware('auth');

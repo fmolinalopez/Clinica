@@ -1,4 +1,5 @@
 function obtenerDatosPersonales() {
+    $("#editButton").on("click",enviarFormulario);
     elegir('personal');
     axios.get(`/profile/personal`)
         .then(function(response){
@@ -11,6 +12,7 @@ function obtenerDatosPersonales() {
 }
 
 function obtenerDatosCuenta() {
+    $("#editButton").on("click",enviarFormulario);
     elegir('account');
     axios.get(`/profile/account`)
         .then(function(response){
@@ -23,6 +25,7 @@ function obtenerDatosCuenta() {
 }
 
 function obtenerDatosAvatar() {
+    $("#editButton").on("click",enviarFormulario);
     elegir('avatar');
     axios.get(`/profile/avatar`)
         .then(function(response){
@@ -35,6 +38,7 @@ function obtenerDatosAvatar() {
 }
 
 function obtenerDatosAdicionales() {
+    $("#editButton").on("click",enviarFormulario);
     elegir('additional');
     axios.get(`/profile/additional`)
         .then(function(response){
@@ -76,4 +80,10 @@ function asociarEventoPerfil(){
 
 $(function(){
     asociarEventoPerfil();
+
 });
+
+function enviarFormulario() {
+    console.log("test");
+    $("#editForm").submit();
+}

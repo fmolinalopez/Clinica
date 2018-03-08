@@ -1,9 +1,10 @@
 {{ method_field('PATCH') }}
+<input type="hidden" name="route" value="account">
 <div class="form-group row{{ $errors->has('userName') ? ' has-error' : '' }}">
     <label for="userName" class="col-lg-12 col-form-label text-center">Nombre de Usuario</label>
 
     <div class="col-md-8 centro">
-        <input id="userName" type="text" class="form-control" name="userName" value="{{ old('userName') }}"  autofocus>
+        <input id="userName" type="text" class="form-control" name="userName" value="{{ old('userName') }}" placeholder="{{ $user->userName  }}">
 
         @if ($errors->has('userName'))
             <div class="alert alert-danger">
@@ -16,7 +17,7 @@
     <label for="email" class="col-lg-12 col-form-label text-center">E-Mail</label>
 
     <div class="col-md-8 centro">
-        <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" >
+        <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" placeholder="{{ $user->email  }}">
 
         @if ($errors->has('email'))
             <div class="alert alert-danger">
@@ -27,7 +28,7 @@
 </div>
 
 <div class="form-group row{{ $errors->has('current_password') ? ' has-error' : '' }}">
-    <label for="current_password" class="col-lg-12 col-form-label text-center">Contraseña actual</label><br>
+    <label for="current_password" class="col-lg-12 col-form-label text-center">Contraseña actual</label>
 
     <div class="col-md-8 centro">
         <input id="current_password" type="password" class="form-control" name="current_password" >
@@ -41,7 +42,7 @@
 </div>
 
 <div class="form-group row{{ $errors->has('password') ? ' has-error' : '' }}">
-    <label for="password" class="col-lg-12 col-form-label text-center">Nueva contraseña</label><br>
+    <label for="password" class="col-lg-12 col-form-label text-center">Nueva contraseña</label>
 
     <div class="col-md-8 centro">
         <input id="password" type="password" class="form-control" name="password" >
@@ -69,8 +70,4 @@
             </div>
         @endif
     </div>
-</div>
-
-<div class="text-center">
-    <button class="btn btn-primary" type="submit">Actualizar</button>
 </div>
