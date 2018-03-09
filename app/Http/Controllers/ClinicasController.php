@@ -16,6 +16,14 @@ class ClinicasController extends Controller
         ]);
     }
 
+    public function info($clinicaId){
+        $clinica = Clinica::find($clinicaId);
+
+        return view('clinicas.info', [
+            'clinica' => $clinica,
+        ]);
+    }
+
     public function sincronizarClinicas(Request $request){
         $user = Auth::user();
         $clincas = $request->input('clinicas');

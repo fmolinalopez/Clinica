@@ -24,4 +24,4 @@
     </div>
 </div>
 
-<button hidden disabled class="btn btn-primary" type="submit" id="pedirCita">Pedir cita</button>
+<button hidden disabled class="btn btn-primary" onclick="this.disabled=true;this.form.submit();" type="submit" id="pedirCita">Pedir cita</button>

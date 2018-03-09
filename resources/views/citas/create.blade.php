@@ -6,7 +6,7 @@
     </div>
 
     <div id="cita">
-        <form action="{{ route('crearCita') }}" method="post">
+        <form id="citaForm" action="{{ route('crearCita') }}" method="post">
             {{ csrf_field() }}
             <div class="form-group selectClinicas">
                 <div class="input-group mb-3">

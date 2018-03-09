@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Conversation;
+use App\Message;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class UsersController extends Controller
 {
@@ -15,13 +18,36 @@ class UsersController extends Controller
     public function index($userName)
     {
         $user = User::where('userName', $userName)->first();
-        $medicos = $user->medicos()->latest()->paginate(10);
         return view(
             'users.index', [
-                'medicos' => $medicos,
                 'user'    => $user,
             ]
         );
+    }
+
+    public function conversation($medico){
+        $medico = User::where('name', $medico)->first();
+
+        return view('conversations.index', [
+            'medico' => $medico
+        ]);
+    }
+
+    public function crearConversation($medico, Request $request){
+        $medico = User::where('name', $medico)->first();
+        $user = Auth::user();
+
+        $message = $request->input('message');
+
+        $conversation = Conversation::between($user, $medico);
+
+        $message = Message::create([
+            'conversation_id' => $conversation->id,
+            'user_id' => $user->id,
+            'message' => $message
+        ]);
+
+        return redirect('/');
     }
 
     /**

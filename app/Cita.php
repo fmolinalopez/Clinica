@@ -14,7 +14,7 @@ class Cita extends Model
         return $this->belongsToMany(User::class);
     }
 
-    public function clinicas(){
+    public function clinica(){
         return $this->belongsTo(Clinica::class);
     }
 
@@ -34,5 +34,10 @@ class Cita extends Model
         $citas->users()->sync([$user->id, $other->id]);
 
         return $citas;
+    }
+
+    public static function obtenerMedico($cita){
+        $users = $cita->users()->get();
+        return ($users[0]->esMedico === 1 ? $users[0] : $users[1]);
     }
 }
