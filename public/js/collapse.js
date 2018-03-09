@@ -1,36 +1,47 @@
-function mostrar() {
-    $("#elemento1").collapse("show");
-    $("#elemento2").collapse("show");
+function mostrarInfoLoginUsuario() {
+    $("#cardUser").removeClass("col-lg-6");
+    $("#cardUser").removeClass("col-lg-4");
+    $("#cardMedico").removeClass("col-lg-6");
+    $("#cardMedico").removeClass("col-lg-8");
+    $("#cardUser").addClass("col-lg-8");
+    $("#cardMedico").addClass("col-lg-4");
+    $("#medicoCollapse").collapse("hide");
+    $("#userCollapse").collapse("toggle");
 }
 
-function ocultar() {
-    $("#elemento1").collapse("hide");
-    $("#elemento2").collapse("hide");
+function mostrarInfoLoginMedico() {
+    $("#cardUser").removeClass("col-lg-6");
+    $("#cardUser").removeClass("col-lg-8");
+    $("#cardMedico").removeClass("col-lg-6");
+    $("#cardMedico").removeClass("col-lg-4");
+    $("#cardUser").addClass("col-lg-4");
+    $("#cardMedico").addClass("col-lg-8");
+    $("#medicoCollapse").collapse("toggle");
+    $("#userCollapse").collapse("hide");
 }
 
-function toogle() {
-    $("#elemento1").collapse("toggle");
-    $("#elemento2").collapse("toggle");
+function mostrarLoginMedico() {
+    $('#medicoForm').collapse("toggle");
+}
+
+function mostrarLoginUser() {
+    $('#userForm').collapse("toggle");
+}
+
+function sameSize() {
+    $("#cardUser").removeClass("col-lg-4");
+    $("#cardUser").removeClass("col-lg-8");
+    $("#cardUser").addClass("col-lg-6");
+    $("#cardMedico").removeClass("col-lg-4");
+    $("#cardMedico").removeClass("col-lg-8");
+    $("#cardMedico").addClass("col-lg-6");
 }
 
 $(function() {
-    $('#test').on('click', function () {
-        mostrar();
-    });
-
-    $('#elemento1').on('show.bs.collapse', function () {
-        alert("Se va a mostrar el elemento");
-    })
-
-    $('#elemento1').on('shown.bs.collapse', function (e) {
-        alert("Se ha mostrado el elemento");
-    })
-
-    $('#elemento1').on('hide.bs.collapse', function (e) {
-        alert("Se va a ocultar el elemento");
-    })
-
-    $('#elemento1').on('hidden.bs.collapse', function (e) {
-        alert("Se va ha ocultado el elemento");
-    })
+    $('#chooseUser').on('click', mostrarInfoLoginUsuario);
+    $('#chooseMedico').on('click', mostrarInfoLoginMedico);
+    $('#loginMedico').on('click', mostrarLoginMedico);
+    $('#loginUser').on('click', mostrarLoginUser);
+    $('#medicoCollapse').on('hide.bs.collapse', sameSize);
+    $('#userCollapse').on('hide.bs.collapse', sameSize);
 });

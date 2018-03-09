@@ -8,7 +8,11 @@ class Clinica extends Model
 {
     protected $guarded = ['id', 'created_at', 'updated_at'];
 
-    public function medicos(){
-        return $this->belongsToMany(Medico::class);
+    public function users(){
+        return $this->belongsToMany(User::class);
+    }
+
+    public function citas(){
+        return $this->hasMany(Cita::class);
     }
 }

@@ -43,43 +43,72 @@ class RegisterController extends Controller
     /**
      * Get a validator for an incoming registration request.
      *
-     * @param  array  $data
+     * @param  array $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
     protected function validator(array $data)
     {
-        return Validator::make($data, [
-            'name' => 'required|string|max:255',
-            'lastName' => 'required|string|max:255',
-            'userName' => 'required|string|max:255|unique:users',
-            'email' => 'required|string|email|max:255|unique:users',
-            'num_sanitario' => 'required|digits:11|unique:users',
-            'birthdate' => 'required|date',
-            'dni' => 'string|min:9|unique:users',
-            'movil' => 'required|int|digits:9|unique:users',
-            'password' => 'required|string|min:6|confirmed'
-        ]);
+        if ($data['type'] === "false") {
+            return Validator::make($data, [
+                'name' => 'required|alpha|max:255',
+                'lastName' => 'required|alpha|max:255',
+                'userName' => 'required|string|max:255|unique:users',
+                'email' => 'required|string|email|max:255|unique:users',
+                'num_sanitario' => 'required',
+                'birthdate' => 'required|date',
+                'dni' => 'string|min:9|unique:users|nullable',
+                'movil' => 'required|int|digits:9|unique:users',
+                'password' => 'required|string|min:6|confirmed'
+            ]);
+        }else{
+            return Validator::make($data, [
+                'name' => 'required|alpha|max:255',
+                'lastName' => 'required|alpha|max:255',
+                'userName' => 'required|string|max:255|unique:users',
+                'email' => 'required|string|email|max:255|unique:users',
+                'especialidad' => 'required|alpha',
+                'num_colegiado' => 'required|numeric',
+                'movil' => 'required|int|digits:9|unique:users',
+                'password' => 'required|string|min:6|confirmed'
+            ]);
+        }
     }
 
     /**
      * Create a new user instance after a valid registration.
      *
-     * @param  array  $data
+     * @param  array $data
      * @return \App\User
      */
     protected function create(array $data)
     {
-        return User::create([
-            'name' => $data['name'],
-            'lastName' => $data['lastName'],
-            'userName' => $data['userName'],
-            'email' => $data['email'],
-            'num_sanitario' => $data['num_sanitario'],
-            'birthdate' => $data['birthdate'],
-            'dni' => $data['dni'],
-            'movil' => $data['movil'],
-            'avatar' => 'http://sprintresources.com/wp-content/uploads/2016/12/icon-user.png',
-            'password' => bcrypt($data['password']),
-        ]);
+        if ($data['type'] === "false") {
+            return User::create([
+                'esMedico' => 0,
+                'name' => $data['name'],
+                'lastName' => $data['lastName'],
+                'userName' => $data['userName'],
+                'email' => $data['email'],
+                'num_sanitario' => $data['num_sanitario'],
+                'birthdate' => $data['birthdate'],
+                'dni' => $data['dni'],
+                'movil' => $data['movil'],
+                'avatar' => 'http://sprintresources.com/wp-content/uploads/2016/12/icon-user.png',
+                'password' => bcrypt($data['password']),
+            ]);
+        }else{
+            return User::create([
+                'esMedico' => 1,
+                'name' => $data['name'],
+                'lastName' => $data['lastName'],
+                'userName' => $data['userName'],
+                'email' => $data['email'],
+                'especialidad' => $data['especialidad'],
+                'num_colegiado' => $data['num_colegiado'],
+                'movil' => $data['movil'],
+                'avatar' => 'http://sprintresources.com/wp-content/uploads/2016/12/icon-user.png',
+                'password' => bcrypt($data['password']),
+            ]);
+        }
     }
 }

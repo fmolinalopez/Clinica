@@ -31,7 +31,7 @@
 
                 <div class="navbar navbar-toggleable-md navbar-light bg-faded">
                     <ul class="navbar-nav">
-                        <li class="nav-item active"><a href="{{ route('addMedico') }}" class="nav-link">Añadir Medico</a></li>
+                        {{--<li class="nav-item active"><a href="{{ route('addMedico') }}" class="nav-link">Añadir Medico</a></li>--}}
                         <li class="nav-item active"><a href="{{ route('askCita') }}" class="nav-link">Pedir Cita</a></li>
                     </ul>
                 </div>
@@ -87,6 +87,7 @@
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
     <script src="{{ asset('js/edad.js') }}"></script>
+    <script src="{{ asset('js/collapse.js') }}"></script>
     <script src="{{ asset('js/jquery.datetimepicker.full.js') }}"></script>
 </body>
 

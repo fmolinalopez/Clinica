@@ -14,10 +14,10 @@ class Medico extends Model
     // que NO se podrán modificar programáticamente.
     protected $guarded = ['id', 'created_at', 'updated_at'];
 
-    public function user()
-    {
-        return $this->belongsTo(User::class);
-    }
+//    public function user()
+//    {
+//        return $this->belongsTo(User::class);
+//    }
 
     public function clinicas(){
         return $this->belongsToMany(Clinica::class);

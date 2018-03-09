@@ -14,12 +14,15 @@
 Route::get('/', 'PagesController@home')->name('/');
 Route::get('/obtenerPaginaMedicos/', 'PagesController@obtenerPaginaMedicos');
 
-Route::get('/medicos/create', 'MedicosController@create')->name('addMedico')->middleware('auth');
-Route::post('/medicos/create', 'MedicosController@store')->name('storeMedico')->middleware('auth');
-Route::post('/medicos/validar', 'MedicosController@validar')->middleware('auth');
+//Route::post('/medicos/create', 'MedicosController@create')->name('storeMedico');
+//Route::post('/medicos/create', 'MedicosController@store')->name('storeMedico')->middleware('auth');
+//Route::post('/medicos/validar', 'MedicosController@validar')->middleware('auth');
 Route::get('/{nombreMedico}/clinicas', 'MedicosController@clinicas')->name('clinicas');
 
 Route::get('/user/{userName}', 'UsersController@index')->name('userInfo');
+
+Route::get('/{user}/clinicas/elegir', 'ClinicasController@elegirClinicas')->middleware('auth');
+Route::post('/{user}/clinicas/elegir', 'ClinicasController@sincronizarClinicas')->middleware('auth');
 
 Route::get('/profile', 'ProfilesController@profile')->name('profile')->middleware('auth');
 Route::get('/profile/edit', 'ProfilesController@edit')->name('profile.edit')->middleware('auth');

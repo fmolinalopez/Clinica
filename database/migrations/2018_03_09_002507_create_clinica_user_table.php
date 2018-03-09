@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddUserIdToMedicosTable extends Migration
+class CreateClinicaUserTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,13 @@ class AddUserIdToMedicosTable extends Migration
      */
     public function up()
     {
-        Schema::table('medicos', function (Blueprint $table) {
-            $table->integer('user_id')->unsigned()->after('id');
+        Schema::create('clinica_user', function (Blueprint $table) {
+            $table->integer('clinica_id')->unsigned();
+            $table->integer('user_id')->unsigned();
 
+            $table->primary(['clinica_id', 'user_id']);
+
+            $table->foreign('clinica_id')->references('id')->on('clinicas');
             $table->foreign('user_id')->references('id')->on('users');
         });
     }
@@ -27,9 +31,6 @@ class AddUserIdToMedicosTable extends Migration
      */
     public function down()
     {
-        Schema::table('medicos', function (Blueprint $table) {
-            $table->dropForeign('medicos_user_id_foreign');
-            $table->dropColumn('user_id');
-        });
+        Schema::dropIfExists('clinica_user');
     }
 }

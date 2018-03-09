@@ -15,12 +15,10 @@ class CreateCitasTable extends Migration
     {
         Schema::create('citas', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('medico_id')->unsigned();
-            $table->integer('user_id')->unsigned();
+            $table->integer('clinica_id')->unsigned();
             $table->dateTime('fecha_cita');
 
-            $table->foreign('medico_id')->references('id')->on('medicos');
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('clinica_id')->references('id')->on('clinicas');
             $table->timestamps();
         });
     }
