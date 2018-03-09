@@ -15,7 +15,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'lastName', 'userName', 'email', 'num_sanitario', 'birthdate', 'dni', 'movil','avatar', 'password',
+        'esMedico', 'name', 'lastName', 'userName', 'email', 'num_sanitario', 'birthdate', 'dni', 'movil', 'avatar', 'especialidad', 'num_colegiado', 'curriculum', 'favoritos', 'destacado', 'password',
     ];
 
     /**
@@ -27,9 +27,9 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    public function medicos(){
-        return $this->hasMany(Medico::class);
-    }
+//    public function medicos(){
+//        return $this->hasMany(Medico::class);
+//    }
 
     public function citas(){
         return $this->hasMany(Cita::class);

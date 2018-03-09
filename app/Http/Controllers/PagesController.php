@@ -9,10 +9,10 @@ use Illuminate\Support\Facades\View;
 class PagesController extends Controller
 {
     public function home(){
-        $medicos = Medico::orderBy('created_at', 'desc')->paginate(10);
+//        $medicos = Medico::orderBy('created_at', 'desc')->paginate(10);
 
         return view('home', [
-            'medicos' => $medicos,
+//            'medicos' => $medicos,
         ]);
     }
 

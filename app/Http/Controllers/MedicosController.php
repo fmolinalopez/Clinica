@@ -10,11 +10,34 @@ use Illuminate\Http\Request;
 
 class MedicosController extends Controller
 {
-    public function create(){
+    public function create(CreateMedicoRequest $request){
+        $clinicasId = $request->input('clinicas');
+
+        $clinicas = Clinica::wherein("id", $clinicasId)->get();
+
+
+        $medico = Medico::create([
+            'imagen'   => $request->input('imagen'),
+            'nombre'    => $request->input('nombre'),
+            'email'    => $request->input('email'),
+            'especialidad'    => $request->input('especialidad'),
+            'num_colegiado'    => $request->input('num_colegiado'),
+            'curriculum'    => $request->input('curriculum'),
+            'favoritos' => 0,
+            'destacado' => false,
+            'extra' => ''
+        ]);
+
+        $medico->clinicas()->sync($clinicas);
+
+        return redirect('/');
+    }
+
+    public function register(){
         $clinicas = Clinica::all();
 
-        return view('medicos.create', [
-            'clinicas' => $clinicas,
+        return view('auth.medicoRegister', [
+            'clinicas' => $clinicas
         ]);
     }
 
@@ -36,12 +59,10 @@ class MedicosController extends Controller
 
         $user = $request->user();
         $clinicasId = $request->input('clinicas');
-        dd($clinicasId);
         $clinicas = Clinica::wherein("id", $clinicasId)->get();
 
 
         $medico = Medico::create([
-            'user_id' => $user->id,
             'imagen'   => $request->input('imagen'),
             'nombre'    => $request->input('nombre'),
             'email'    => $request->input('email'),

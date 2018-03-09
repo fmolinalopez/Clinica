@@ -14,8 +14,8 @@ class Cita extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function medico()
-    {
-        return $this->belongsTo(Medico::class);
-    }
+//    public function medico()
+//    {
+//        return $this->belongsTo(Medico::class);
+//    }
 }

@@ -16,6 +16,7 @@ use Carbon\Carbon as Carbon;
 
 $factory->define(App\User::class, function (Faker $faker) {
     return [
+        'esMedico' => $faker->boolean,
         'name' => $name = $faker->firstName,
         'lastName' => $lastName = $faker->lastName,
         'userName' => strtolower($name) . "." . strtolower($lastName),

@@ -14,9 +14,9 @@
 Route::get('/', 'PagesController@home')->name('/');
 Route::get('/obtenerPaginaMedicos/', 'PagesController@obtenerPaginaMedicos');
 
-Route::get('/medicos/create', 'MedicosController@create')->name('addMedico')->middleware('auth');
-Route::post('/medicos/create', 'MedicosController@store')->name('storeMedico')->middleware('auth');
-Route::post('/medicos/validar', 'MedicosController@validar')->middleware('auth');
+//Route::post('/medicos/create', 'MedicosController@create')->name('storeMedico');
+//Route::post('/medicos/create', 'MedicosController@store')->name('storeMedico')->middleware('auth');
+//Route::post('/medicos/validar', 'MedicosController@validar')->middleware('auth');
 Route::get('/{nombreMedico}/clinicas', 'MedicosController@clinicas')->name('clinicas');
 
 Route::get('/user/{userName}', 'UsersController@index')->name('userInfo');
