@@ -11,4 +11,8 @@ class Clinica extends Model
     public function users(){
         return $this->belongsToMany(User::class);
     }
+
+    public function citas(){
+        return $this->hasMany(Cita::class);
+    }
 }

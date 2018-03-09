@@ -27,11 +27,11 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-//    public function medicos(){
-//        return $this->hasMany(Medico::class);
-//    }
-
     public function citas(){
-        return $this->hasMany(Cita::class);
+        return $this->belongsToMany(Cita::class);
+    }
+
+    public function clinicas(){
+        return $this->belongsToMany(Clinica::class);
     }
 }

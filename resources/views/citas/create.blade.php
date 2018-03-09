@@ -13,10 +13,10 @@
                     <div class="input-group-prepend">
                         <label class="input-group-text bg-primary text-light" for="inputGroupSelect01">Clinica</label>
                     </div>
-                    <select class="custom-select" id="inputGroupSelect01">
+                    <select name="clinica"  class="custom-select" id="inputGroupSelect01">
                         <option>Elija una clinica...</option>
                         @foreach($clinicas as $clinica)
-                            <option @if(isset($selectedClinica) && $selectedClinica->id == $clinica->id) selected @endif name="clinica"  value="{{$clinica->id}}">Nombre: {{$clinica->nombre}}</option>
+                            <option @if(isset($selectedClinica) && $selectedClinica->id == $clinica->id) selected @endif value="{{$clinica->id}}">Nombre: {{$clinica->nombre}}</option>
                         @endforeach
                     </select>
                 </div>

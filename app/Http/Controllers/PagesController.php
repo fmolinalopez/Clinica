@@ -4,15 +4,16 @@ namespace App\Http\Controllers;
 
 use App\Medico;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\View;
 
 class PagesController extends Controller
 {
     public function home(){
-//        $medicos = Medico::orderBy('created_at', 'desc')->paginate(10);
+        $user = Auth::user();
 
         return view('home', [
-//            'medicos' => $medicos,
+            'user' => $user,
         ]);
     }
 

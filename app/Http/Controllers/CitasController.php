@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Cita;
 use App\Clinica;
 use App\Medico;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\View;
@@ -31,16 +32,13 @@ class CitasController extends Controller
 
     public function store(Request $request){
         $user = Auth::user();
-        $medico = Medico::where("id", $request->input('medico'))->first();
+        $medico = User::where("id", $request->input('medico'))->first();
+        $clinicaId = $request->input('clinica');
         $fecha =  $request->input('horaCita');
 
-        $cita = Cita::create([
-            'medico_id' => $medico->id,
-            'user_id' => $user->id,
-            'fecha_cita' => $fecha,
-        ]);
+        Cita::between($user, $medico, $clinicaId, $fecha);
 
-        return redirect('/citas');
+        return redirect('/');
     }
 
     public function obtenerMedicosClinica($idClinica){
@@ -56,9 +54,9 @@ class CitasController extends Controller
         }
     }
 
-    public function validar(){
+    public function validar(Request $request){
         $idMedico = $_POST['idMedico'];
-        $medico = Medico::where('id', $idMedico)->first();
+        $medico = User::where('id', $idMedico)->first();
         $fecha = $_POST['fecha'];
         $checkFecha = $medico->citas()->where('fecha_cita', $fecha)->first();
         if ($fecha === ""){

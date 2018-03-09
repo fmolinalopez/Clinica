@@ -21,7 +21,7 @@ function gestionarErrores(input, errores) {
 function validateTarget(target) {
     let formData = new FormData();
     let input = (event.target);
-    console.log(input.id);
+    console.log("input id: " + input.id);
     console.log(target.value);
     formData.append(input.id, input.value);
     // $(target).parent().next(".spinner").addClass("sk-circle");

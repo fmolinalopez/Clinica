@@ -21,6 +21,9 @@ Route::get('/{nombreMedico}/clinicas', 'MedicosController@clinicas')->name('clin
 
 Route::get('/user/{userName}', 'UsersController@index')->name('userInfo');
 
+Route::get('/{user}/clinicas/elegir', 'ClinicasController@elegirClinicas')->middleware('auth');
+Route::post('/{user}/clinicas/elegir', 'ClinicasController@sincronizarClinicas')->middleware('auth');
+
 Route::get('/profile', 'ProfilesController@profile')->name('profile')->middleware('auth');
 Route::get('/profile/edit', 'ProfilesController@edit')->name('profile.edit')->middleware('auth');
 Route::patch('/profile/edit', 'ProfilesController@update')->middleware('auth');
