@@ -19,8 +19,8 @@ class CreateClinicaUserTable extends Migration
 
             $table->primary(['clinica_id', 'user_id']);
 
-            $table->foreign('clinica_id')->references('id')->on('clinicas');
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('clinica_id')->references('id')->on('clinicas')->onDelete("cascade");
+            $table->foreign('user_id')->references('id')->on('users')->onDelete("cascade");
         });
     }
 

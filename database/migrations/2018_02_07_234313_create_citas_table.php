@@ -18,7 +18,7 @@ class CreateCitasTable extends Migration
             $table->integer('clinica_id')->unsigned();
             $table->dateTime('fecha_cita');
 
-            $table->foreign('clinica_id')->references('id')->on('clinicas');
+            $table->foreign('clinica_id')->references('id')->on('clinicas')->onDelete("cascade");
             $table->timestamps();
         });
     }

@@ -15,7 +15,33 @@
                                 <div class="col text-center">
                                     <h3><strong>Medico:</strong><a href="/user/{{\App\Cita::obtenerMedico($cita)->userName}}">{{\App\Cita::obtenerMedico($cita)->name}}</a></h3>
                                     <h3><strong>Clinica:</strong><a href="/clinica/{{$cita->clinica->id}}">{{$cita->clinica->nombre}}</a></h3>
+                                </div>
+                                <div class="col">
                                     <a href="/conversation/{{\App\Cita::obtenerMedico($cita)->name}}"><button class="btn btn-primary">Contactar Médico</button></a>
+                                    <a href="#"><button id="btnCancelar" class="btn btn-danger">Cancelar cita</button></a>
+                                    <div class="modal fade" id="cancelarCita" tabindex="-1" data-backdrop="static" data-show="false">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="ejemplo2Label">¿Cancelar cita?</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    Esta accion no se puede deshacer, ¿esta seguro?
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" id="back" class="btn btn-primary" onclick="cerrarModal('ejemplo2');">Volver atras</button>
+                                                    <form action="{{Route('cita.delete', $cita->id)}}" method="post">
+                                                        {{csrf_field()}}
+                                                        {{method_field('DELETE')}}
+                                                        <button type="submit" id="accept" class="btn btn-danger">Cancelar Cita</button>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -45,4 +71,7 @@
         @endif
     @endforeach
     {{ $citas->links('pagination::bootstrap-4') }}
+    @push('scripts')
+        <script src="{{ asset('js/modal.js') }}" defer></script>
+    @endpush
 @endsection

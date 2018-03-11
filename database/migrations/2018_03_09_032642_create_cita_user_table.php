@@ -19,8 +19,8 @@ class CreateCitaUserTable extends Migration
 
             $table->primary(['cita_id', 'user_id']);
 
-            $table->foreign('cita_id')->references('id')->on('citas');
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('cita_id')->references('id')->on('citas')->onDelete("cascade");
+            $table->foreign('user_id')->references('id')->on('users')->onDelete("cascade");
         });
     }
 

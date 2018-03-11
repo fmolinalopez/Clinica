@@ -17,7 +17,7 @@ class CitasController extends Controller
 
     public function __construct()
     {
-        $this->middleware( function($request, $next){
+        $this->middleware(function ($request, $next) {
             $this->user = auth()->user();
 
             return $next($request);
@@ -64,7 +64,8 @@ class CitasController extends Controller
     public function store(Request $request)
     {
         $user = $this->user;
-        $medico = User::find($request->input('medico'))->first();
+        $medico = User::where('id', $request->input('medico'))->first();
+        dd($medico);
         $clinicaId = $request->input('clinica');
         $fecha = $request->input('horaCita');
 
@@ -82,8 +83,7 @@ class CitasController extends Controller
     public function obtenerMedicosClinica($idClinica)
     {
         if (request()->ajax()) {
-            $selectedClinicaId = $idClinica;
-            $selectedClinica = Clinica::find($selectedClinicaId)->first();
+            $selectedClinica = Clinica::where('id', $idClinica)->first();
 
             return View::make('citas.selectMedico', array(
                 'selectedClinica' => $selectedClinica,
@@ -115,5 +115,16 @@ class CitasController extends Controller
                 return array();
             }
         }
+    }
+
+    public function destroy(Cita $cita)
+    {
+        if (!$this->user->can('delete', $cita)) {
+            return redirect('/');
+        }
+
+        $cita->delete();
+
+        return redirect()->route('profile');
     }
 }

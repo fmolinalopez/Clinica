@@ -45,6 +45,7 @@ Route::get('/cita', 'CitasController@crearCita')->name('askCita')->middleware('a
 Route::post('/cita/crear', 'CitasController@store')->name('crearCita')->middleware('auth');
 Route::post('/cita/validar', 'CitasController@validar')->name('validarCita')->middleware('auth');
 Route::get('/obtenerMedicosClinica/{idClinica}', 'CitasController@obtenerMedicosClinica');
+Route::delete('/cita/delete/{cita}', 'CitasController@destroy')->name('cita.delete')->middleware('auth');
 //Route::get('/obtenerCitasMedico/{idMedico}', 'CitasController@obtenerCitasMedico');
 
 Auth::routes();

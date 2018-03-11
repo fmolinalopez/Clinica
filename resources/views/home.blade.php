@@ -27,11 +27,11 @@
                                 {{ csrf_field() }}
 
                                 <div class="form-group row">
-                                    <label for="email" class="col-lg-4 col-form-label text-lg-right">E-Mail</label>
+                                    <label for="emailMedico" class="col-lg-4 col-form-label text-lg-right">E-Mail</label>
 
                                     <div class="col-lg-6">
                                         <input
-                                                id="email"
+                                                id="emailMedico"
                                                 type="email"
                                                 class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}"
                                                 name="email"
@@ -48,12 +48,12 @@
                                 </div>
 
                                 <div class="form-group row">
-                                    <label for="password"
+                                    <label for="passwordMedico"
                                            class="col-lg-4 col-form-label text-lg-right">Contraseña</label>
 
                                     <div class="col-lg-6">
                                         <input
-                                                id="password"
+                                                id="passwordMedico"
                                                 type="password"
                                                 class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}"
                                                 name="password"
@@ -99,11 +99,11 @@
                                 {{ csrf_field() }}
 
                                 <div class="form-group row">
-                                    <label for="email" class="col-lg-4 col-form-label text-lg-right">E-Mail</label>
+                                    <label for="emailUser" class="col-lg-4 col-form-label text-lg-right">E-Mail</label>
 
                                     <div class="col-lg-6">
                                         <input
-                                                id="email"
+                                                id="emailUser"
                                                 type="email"
                                                 class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}"
                                                 name="email"
@@ -120,12 +120,12 @@
                                 </div>
 
                                 <div class="form-group row">
-                                    <label for="password"
+                                    <label for="passwordUser"
                                            class="col-lg-4 col-form-label text-lg-right">Contraseña</label>
 
                                     <div class="col-lg-6">
                                         <input
-                                                id="password"
+                                                id="passwordUser"
                                                 type="password"
                                                 class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}"
                                                 name="password"
