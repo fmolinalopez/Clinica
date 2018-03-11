@@ -27,11 +27,23 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    /**
+     * Relacion entre citas y usuarios, un usuario pertenece a varias citas
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
     public function citas(){
         return $this->belongsToMany(Cita::class);
     }
 
+    /**
+     * Relacion entre clinicas y usuarios, un usuario pertenece a varias clinicas.
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
     public function clinicas(){
         return $this->belongsToMany(Clinica::class);
+    }
+
+    public function conversations(){
+        return $this->belongsToMany(Conversation::class);
     }
 }

@@ -29,27 +29,24 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
+                @if (!Auth::guest())
                 <div class="navbar navbar-toggleable-md navbar-light bg-faded">
                     <ul class="navbar-nav">
                         {{--<li class="nav-item active"><a href="{{ route('addMedico') }}" class="nav-link">Añadir Medico</a></li>--}}
-                        <li class="nav-item active"><a href="{{ route('askCita') }}" class="nav-link">Pedir Cita</a></li>
+                        @if(!Auth::user()->esMedico)
+                            <li class="nav-item active"><a href="{{ route('askCita') }}" class="nav-link">Pedir Cita</a></li>
+                        @endif
                     </ul>
                 </div>
 
                 <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
                     <ul class="navbar-nav">
-                        @if (Auth::guest())
-                            <li class="nav-item"><a href="/" class="nav-link">Login</a></li>
-                        @else
                             <li class="nav-item dropdown">
                                 <a href="#" class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown"
                                    aria-haspopup="true" aria-expanded="false">
                                     {{ Auth::user()->userName }}
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-                                    <a href="{{ route('profile') }}" class="dropdown-item">
-                                        Perfil
-                                    </a>
                                     <a href="{{ route('logout') }}" class="dropdown-item"
                                        onclick="event.preventDefault();document.getElementById('logout-form').submit();">
                                         Logout
@@ -72,15 +69,15 @@
         </div>
     </div>
 
-    <footer class="footer bg-primary">
+    <div class="footer bg-primary">
         <div>
             <span>
                 <strong>
-                    JEJE
+                    TEST FOOTER
                 </strong>
             </span>
         </div>
-    </footer>
+    </div>
 
 
     <!-- Scripts -->

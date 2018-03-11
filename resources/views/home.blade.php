@@ -159,23 +159,71 @@
         </div>
     @endguest
     @auth
-        <div class="container">
+        @if( session('error'))
+            <div class="text-center alert-danger mt-2">
+                <h1>{{session('error')}}</h1>
+            </div>
+        @endif
+
+        <div class="container text-center">
             <div class="row">
                 <div class="col-md-12 col-sm-12 col-xs-12">
                     <h1 class="page-header text-center titulo">Bienvenido {{ $user->userName}}</h1>
                 </div>
             </div>
-        </div>
-        @if($user->esMedico)
-            <p>Resulta que eres un medico</p>
-            @if($user->clinicas->count() <= 0)
-                <p>Aun no has seleccionado ninguna clinica, no podras recibir mensajes ni citas hasta que selecciones al
-                    menos una </p>
-                <a href="/{{$user->userName}}/clinicas/elegir">Haz click aqui para seleccionar tus clinicas de trabajo</a>
-            @endif
-        @else
+            @if($user->esMedico)
+                @if($user->clinicas->count() <= 0)
+                    <p>Aun no has seleccionado ninguna clinica, no podras recibir mensajes ni citas hasta que
+                        selecciones al
+                        menos una </p>
+                    <a href="/{{$user->userName}}/clinicas/elegir">Haz click aqui para seleccionar tus clinicas de
+                        trabajo</a>
+                @endif
+                <div class="row">
+                    <div class="col-lg-12">
+                        <p>¿Que desea hacer?</p>
+                    </div>
 
-        @endif
+                    <div class="col-lg-6">
+                        <a href="/profile">Ir al perfil</a>
+                    </div>
+
+                    <div class="col-lg-6">
+                        <a href="/{{$user->userName}}/clinicas/elegir">Modificar clinicas</a>
+                    </div>
+
+                    <div class="col-lg-6">
+                        <a href="/citas">Mostrar citas</a>
+                    </div>
+
+                    <div class="col-lg-6">
+                        <a href="/conversations">Mostrar conversaciones</a>
+                    </div>
+                </div>
+            @else
+                <div class="row">
+                    <div class="col-lg-12">
+                        <p>¿Que desea hacer?</p>
+                    </div>
+
+                    <div class="col-lg-6">
+                        <a href="/profile">Ir al perfil</a>
+                    </div>
+
+                    <div class="col-lg-6">
+                        <a href="/cita">Pedir cita</a>
+                    </div>
+
+                    <div class="col-lg-6">
+                        <a href="/citas">Mostrar citas</a>
+                    </div>
+
+                    <div class="col-lg-6">
+                        <a href="/conversations">Mostrar conversaciones</a>
+                    </div>
+                </div>
+            @endif
+        </div>
 
     @endauth
 

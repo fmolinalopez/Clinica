@@ -19,9 +19,7 @@ class Medico extends Model
 //        return $this->belongsTo(User::class);
 //    }
 
-    public function clinicas(){
-        return $this->belongsToMany(Clinica::class);
-    }
+
 
     public function citas(){
         return $this->hasMany(Cita::class);

@@ -19,6 +19,7 @@
         </div>
         <input id="datetimepicker" name="horaCita" type="text" >
     </div>
+
     <div hidden class="alert alert-danger" id="alertFecha" role="alert">
         Fecha no disponible.
     </div>

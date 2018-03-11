@@ -5,6 +5,14 @@
         <h1>Pedir una cita</h1>
     </div>
 
+    @if($errors->has('fecha'))
+        @foreach($errors->get('fecha') as $message)
+            <div class="alert alert-danger" role="alert">
+                {{ $message }}
+            </div>
+        @endforeach
+    @endif
+
     <div id="cita">
         <form id="citaForm" action="{{ route('crearCita') }}" method="post">
             {{ csrf_field() }}

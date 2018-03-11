@@ -29,10 +29,15 @@
         <div class="card-body">
             <div class="col-lg-12">
                 @if( session('exito'))
-                    <h1>Perfil actualisado cabesa</h1>
+                    <h1 class="alert-success">{{session('exito')}}</h1>
                 @elseif( session('error'))
-                    <h1>La cagaste puto</h1>
+                    <h1 class="alert-danger">{{session('error')}}</h1>
                 @endif
+                @isset($errors)
+                    @foreach($errors as $error)
+                        <p>{{$error}}</p>
+                    @endforeach
+                @endisset
                 <form id="editForm" action="/profile/edit" method="POST">
                     {{ csrf_field() }}
 
@@ -51,6 +56,7 @@
         </div>
         <div class="card-footer bg-primary">
             <button id="editButton" class="btn btn-primary">Actualizar perfil</button>
+            <a href="/profile"><button class="btn btn-primary">Volver al perfil</button></a>
         </div>
     </div>
     @push('scripts')

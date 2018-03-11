@@ -5,7 +5,7 @@
     <label for="avatar" class="col-lg-12 col-form-label text-center">Añadir nuevo avatar</label>
 
     <div class="col-md-8 centro">
-        <input id="avatar" type="file" class="form-control-file" name="avatar">
+        <input id="avatar" type="text" class="form-control" name="avatar">
 
         @if ($errors->has('avatar'))
             <div class="alert alert-danger">

@@ -36,10 +36,12 @@ Route::get('/citas', 'CitasController@showCitasUsuario')->middleware('auth');
 
 Route::get('/clinica/{clinica}', 'ClinicasController@info')->middleware('auth');
 
-Route::get('/conversation/{medico}', 'UsersController@conversation')->middleware('auth');
-Route::post('/conversation/{medico}', 'UsersController@crearConversation')->middleware('auth');
+Route::get('/conversation/{user}', 'UsersController@conversation')->middleware('auth');
+Route::post('/conversation/{user}', 'UsersController@crearConversation')->middleware('auth');
+Route::get('/conversations', 'UsersController@showConversations')->middleware('auth');
+Route::get('/conversation/{conversation}/messages', 'UsersController@showMessages')->middleware('auth');
 
-Route::get('/cita', 'CitasController@crearCita')->name('askCita')->middleware('auth');
+Route::get('/cita', 'CitasController@crearCita')->name('askCita')->middleware('auth', 'notMedico');
 Route::post('/cita/crear', 'CitasController@store')->name('crearCita')->middleware('auth');
 Route::post('/cita/validar', 'CitasController@validar')->name('validarCita')->middleware('auth');
 Route::get('/obtenerMedicosClinica/{idClinica}', 'CitasController@obtenerMedicosClinica');

@@ -20,12 +20,19 @@ class UsersController extends Controller
         $user = User::where('userName', $userName)->first();
         return view(
             'users.index', [
-                'user'    => $user,
+                'user' => $user,
             ]
         );
     }
 
-    public function conversation($medico){
+    /**
+     * Funcion que busca al medico con el id recibido y devuelve la vista conversations.index
+     * con la informacion de dicho medico
+     * @param $medico int Ide del medico a buscar
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function conversation($medico)
+    {
         $medico = User::where('name', $medico)->first();
 
         return view('conversations.index', [
@@ -33,7 +40,35 @@ class UsersController extends Controller
         ]);
     }
 
-    public function crearConversation($medico, Request $request){
+    public function showConversations()
+    {
+        $user = Auth::user();
+
+        return view('conversations.showConversation', [
+            'user' => $user,
+        ]);
+    }
+
+    public function showMessages($conversationId){
+        $esMedico = Auth::user()->esMedico;
+        $conversation = Conversation::where('id', $conversationId)->first();
+        $messages = $conversation->messages()->get();
+
+        return view('conversations.messages', [
+            'esMedico' => $esMedico,
+            'conversation' => $conversation,
+            'messages' => $messages,
+        ]);
+    }
+
+    /**
+     * Funcion que crea una conversacion entre el usuario logeado y el medico recibido.
+     * @param $medico int Id del medico con el que se tiene la conversacion
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
+    public function crearConversation($medico, Request $request)
+    {
         $medico = User::where('name', $medico)->first();
         $user = Auth::user();
 
@@ -41,13 +76,13 @@ class UsersController extends Controller
 
         $conversation = Conversation::between($user, $medico);
 
-        $message = Message::create([
+        Message::create([
             'conversation_id' => $conversation->id,
             'user_id' => $user->id,
             'message' => $message
         ]);
 
-        return redirect('/');
+        return redirect("/conversation/{$conversation->id}/messages");
     }
 
     /**
@@ -63,7 +98,7 @@ class UsersController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -74,7 +109,7 @@ class UsersController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -85,7 +120,7 @@ class UsersController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -96,8 +131,8 @@ class UsersController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -108,7 +143,7 @@ class UsersController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)

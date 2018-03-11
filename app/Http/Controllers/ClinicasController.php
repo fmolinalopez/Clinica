@@ -8,6 +8,11 @@ use Illuminate\Support\Facades\Auth;
 
 class ClinicasController extends Controller
 {
+    /**
+     * Funcion que devuelve la vista clinicas.elegirClinica con la variable $clinicas
+     * que guarda todas las clinicas existentes en la bd.
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function elegirClinicas(){
         $clinicas = Clinica::all();
 
@@ -16,6 +21,12 @@ class ClinicasController extends Controller
         ]);
     }
 
+    /**
+     * Funcion que busca la clinica con el id recibido y devuelve la vista clinicas.info
+     * con los datos de dicha clinica.
+     * @param $clinicaId
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function info($clinicaId){
         $clinica = Clinica::find($clinicaId);
 
@@ -24,6 +35,11 @@ class ClinicasController extends Controller
         ]);
     }
 
+    /**
+     * Funcion que asigna las clinicas recibidas al usuario logeado.
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
     public function sincronizarClinicas(Request $request){
         $user = Auth::user();
         $clincas = $request->input('clinicas');

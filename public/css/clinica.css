@@ -19,6 +19,11 @@
     margin:auto;
 }
 
+.avatar{
+    max-width:100%;
+    max-height:100%;
+}
+
 footer{
     color: white;
 }
@@ -67,7 +72,46 @@ footer a:hover{
     color: black;
 }
 
-html{ height: 100%; }
-body{ min-height:100%; padding:0; margin:0; position:relative; }
-body::after{ content: ''; display:block; height:100px; }
-footer{ position:absolute; bottom:15px; width:100%; height:100px }
+html {
+    height: 100%;
+    box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+}
+
+body {
+    position: relative;
+    margin: 0;
+    padding-bottom: 6rem;
+    min-height: 100%;
+    font-family: "Helvetica Neue", Arial, sans-serif;
+}
+
+.demo {
+    margin: 0 auto;
+    padding-top: 64px;
+    max-width: 640px;
+    width: 94%;
+}
+
+.demo h1 {
+    margin-top: 0;
+}
+
+/**
+ * Footer Styles
+ */
+
+.footer {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding: 1rem;
+    background-color: #efefef;
+    text-align: center;
+}
