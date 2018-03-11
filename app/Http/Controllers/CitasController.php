@@ -65,7 +65,6 @@ class CitasController extends Controller
     {
         $user = $this->user;
         $medico = User::where('id', $request->input('medico'))->first();
-        dd($medico);
         $clinicaId = $request->input('clinica');
         $fecha = $request->input('horaCita');
 
@@ -103,7 +102,7 @@ class CitasController extends Controller
     public function validar(Request $request)
     {
         $idMedico = $_POST['idMedico'];
-        $medico = User::find($idMedico)->first();
+        $medico = User::where("id", $idMedico)->first();
         $fecha = $_POST['fecha'];
         $checkFecha = Cita::findCitaOfMedicoByFecha($medico, $fecha);
         if ($fecha === "") {

@@ -17,10 +17,12 @@
                         <th id="avatar" class="{{ Request::is('profile/avatar') ? 'bg-light' : ''  }} text-primary"
                             scope="col">Avatar
                         </th>
-                        <th id="additional"
-                            class="{{ Request::is('profile/additional') ? 'bg-light' : ''  }} text-primary" scope="col">
-                            Informacion Adicional
-                        </th>
+                        @if(!$user->esMedico)
+                            <th id="additional"
+                                class="{{ Request::is('profile/additional') ? 'bg-light' : ''  }} text-primary" scope="col">
+                                Informacion Adicional
+                            </th>
+                        @endif
                     </tr>
                     </thead>
                 </table>
@@ -42,15 +44,7 @@
                     {{ csrf_field() }}
 
                     <div id="chosenInfo"></div>
-                    {{--@if( Request::is('profile/personal'))--}}
-                    {{--@include('profiles.partials.personal')--}}
-                    {{--@elseif( Request::is('profile/account'))--}}
-                    {{--@include('profiles.partials.account')--}}
-                    {{--@elseif( Request::is('profile/avatar'))--}}
-                    {{--@include('profiles.partials.avatar')--}}
-                    {{--@elseif( Request::is('profile/additional'))--}}
-                    {{--@include('profiles.partials.additional')--}}
-                    {{--@endif--}}
+
                 </form>
             </div>
         </div>

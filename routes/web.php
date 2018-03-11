@@ -21,31 +21,33 @@ Route::get('/{nombreMedico}/clinicas', 'MedicosController@clinicas')->name('clin
 
 Route::get('/user/{userName}', 'UsersController@index')->name('userInfo');
 
-Route::get('/{user}/clinicas/elegir', 'ClinicasController@elegirClinicas')->middleware('auth');
-Route::post('/{user}/clinicas/elegir', 'ClinicasController@sincronizarClinicas')->middleware('auth');
+Route::group(['middleware' => 'auth'], function (){
+    Route::get('/{user}/clinicas/elegir', 'ClinicasController@elegirClinicas');
+    Route::post('/{user}/clinicas/elegir', 'ClinicasController@sincronizarClinicas');
 
-Route::get('/profile', 'ProfilesController@profile')->name('profile')->middleware('auth');
-Route::get('/profile/edit', 'ProfilesController@edit')->name('profile.edit')->middleware('auth');
-Route::patch('/profile/edit', 'ProfilesController@update')->middleware('auth');
-Route::get('/profile/personal', 'ProfilesController@datosPersonales')->middleware('auth');
-Route::get('/profile/account', 'ProfilesController@datosCuenta')->middleware('auth');
-Route::get('/profile/avatar', 'ProfilesController@datosAvatar')->middleware('auth');
-Route::get('/profile/additional', 'ProfilesController@datosAdicionales')->middleware('auth');
+    Route::get('/profile', 'ProfilesController@profile')->name('profile');
+    Route::get('/profile/edit', 'ProfilesController@edit')->name('profile.edit');
+    Route::patch('/profile/edit', 'ProfilesController@update');
+    Route::get('/profile/personal', 'ProfilesController@datosPersonales');
+    Route::get('/profile/account', 'ProfilesController@datosCuenta');
+    Route::get('/profile/avatar', 'ProfilesController@datosAvatar');
+    Route::get('/profile/additional', 'ProfilesController@datosAdicionales');
 
-Route::get('/citas', 'CitasController@showCitasUsuario')->middleware('auth');
+    Route::get('/citas', 'CitasController@showCitasUsuario');
 
-Route::get('/clinica/{clinica}', 'ClinicasController@info')->middleware('auth');
+    Route::get('/clinica/{clinica}', 'ClinicasController@info');
 
-Route::get('/conversation/{user}', 'UsersController@conversation')->middleware('auth');
-Route::post('/conversation/{user}', 'UsersController@crearConversation')->middleware('auth');
-Route::get('/conversations', 'UsersController@showConversations')->middleware('auth');
-Route::get('/conversation/{conversation}/messages', 'UsersController@showMessages')->middleware('auth');
+    Route::get('/conversation/{user}', 'UsersController@conversation');
+    Route::post('/conversation/{user}', 'UsersController@crearConversation');
+    Route::get('/conversations', 'UsersController@showConversations');
+    Route::get('/conversation/{conversation}/messages', 'UsersController@showMessages');
 
-Route::get('/cita', 'CitasController@crearCita')->name('askCita')->middleware('auth', 'notMedico');
-Route::post('/cita/crear', 'CitasController@store')->name('crearCita')->middleware('auth');
-Route::post('/cita/validar', 'CitasController@validar')->name('validarCita')->middleware('auth');
-Route::get('/obtenerMedicosClinica/{idClinica}', 'CitasController@obtenerMedicosClinica');
-Route::delete('/cita/delete/{cita}', 'CitasController@destroy')->name('cita.delete')->middleware('auth');
+    Route::get('/cita', 'CitasController@crearCita')->name('askCita')->middleware('notMedico');
+    Route::post('/cita/crear', 'CitasController@store')->name('crearCita');
+    Route::post('/cita/validar', 'CitasController@validar')->name('validarCita');
+    Route::get('/obtenerMedicosClinica/{idClinica}', 'CitasController@obtenerMedicosClinica');
+    Route::delete('/cita/delete/{cita}', 'CitasController@destroy')->name('cita.delete');
+});
 //Route::get('/obtenerCitasMedico/{idMedico}', 'CitasController@obtenerCitasMedico');
 
 Auth::routes();

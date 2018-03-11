@@ -65,7 +65,7 @@
                     <h4><span class="badge badge-secondary bg-primary">Clinicas:</span></h4>
                     @foreach($user->clinicas as $clinica)
                         <div class="col">
-                            <a href="#">{{$clinica->nombre}}</a>
+                            <a href="/clinica/{{$clinica->id}}">{{$clinica->nombre}}</a>
                         </div>
                     @endforeach
                 </div>

@@ -1,7 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-    <h1>{{Request::get('userType')}}</h1>
     @if(Request::get('userType') == "user")
         <div class="container">
             <div class="row justify-content-md-center mt-5">
