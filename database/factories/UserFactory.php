@@ -15,13 +15,15 @@ use Carbon\Carbon as Carbon;
 */
 
 $factory->define(App\User::class, function (Faker $faker) {
-    return [
-        'esMedico' => $faker->boolean,
+    $esMedico = $faker->boolean;
+    if (!$esMedico){
+        return [
+        'esMedico' => $esMedico,
         'name' => $name = $faker->firstName,
         'lastName' => $lastName = $faker->lastName,
         'userName' => strtolower($name) . "." . strtolower($lastName),
         'email' => strtolower($name) . "." . strtolower($lastName) . "@" . $faker->freeEmailDomain,
-        'avatar' => 'public/images/pic.jpeg',
+        'avatar' => 'http://sprintresources.com/wp-content/uploads/2016/12/icon-user.png',
         'num_sanitario' => $faker->randomNumber(9) . generarUltimosNumerosSanitarios(),
         'birthdate' => $faker->date('Y-m-d'),
         'dni' => $faker->randomNumber(8) . generarLetra(),
@@ -30,7 +32,24 @@ $factory->define(App\User::class, function (Faker $faker) {
         'about' => $faker->sentence,
         'password' => '$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm', // secret
         'remember_token' => str_random(10),
-    ];
+        ];
+    }else{
+        return [
+            'esMedico' => $esMedico,
+            'name' => $name = $faker->firstName,
+            'lastName' => $lastName = $faker->lastName,
+            'userName' => strtolower($name) . "." . strtolower($lastName),
+            'email' => strtolower($name) . "." . strtolower($lastName) . "@" . $faker->freeEmailDomain,
+            'avatar' => 'http://sprintresources.com/wp-content/uploads/2016/12/icon-user.png',
+            'num_colegiado' => $faker->randomNumber(9) . generarUltimosNumerosSanitarios(),
+            'especialidad' => $faker->sentence,
+            'movil' => $faker->e164PhoneNumber,
+            'website' => $faker->url,
+            'about' => $faker->sentence,
+            'password' => '$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm', // secret
+            'remember_token' => str_random(10),
+        ];
+    }
 });
 
 function generarLetra(){

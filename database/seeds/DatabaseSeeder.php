@@ -17,15 +17,12 @@ class DatabaseSeeder extends Seeder
 
         $clinicas = factory(App\Clinica::class, 10)->create();
 
-        $users->each(function (App\User $user) use ($users, $clinicas){
-
-            $medicos = factory(\App\Medico::class,10)->create(['user_id' => $user->id]);
-
-            $medicos->each(function (App\Medico $medico) use ($users, $clinicas){
-               $medico->clinicas()->sync(
-                   $clinicas->random(mt_rand(1,5))
-               );
-            });
+        $users->each(function (App\User $user) use ($users, $clinicas) {
+            if ($user->esMedico) {
+                $user->clinicas()->sync(
+                    $clinicas->random(mt_rand(1, 5))
+                );
+            }
         });
     }
 }
