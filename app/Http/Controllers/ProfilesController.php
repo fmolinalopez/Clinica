@@ -171,4 +171,10 @@ class ProfilesController extends Controller
             return redirect('/');
         }
     }
+
+    public function destroy(){
+        $this->user->delete();
+
+        return redirect('/');
+    }
 }

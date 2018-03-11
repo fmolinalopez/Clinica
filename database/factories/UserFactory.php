@@ -24,9 +24,9 @@ $factory->define(App\User::class, function (Faker $faker) {
         'userName' => strtolower($name) . "." . strtolower($lastName),
         'email' => strtolower($name) . "." . strtolower($lastName) . "@" . $faker->freeEmailDomain,
         'avatar' => 'http://sprintresources.com/wp-content/uploads/2016/12/icon-user.png',
-        'num_sanitario' => $faker->randomNumber(9) . generarUltimosNumerosSanitarios(),
+        'num_sanitario' => $faker->randomNumber(9),
         'birthdate' => $faker->date('Y-m-d'),
-        'dni' => $faker->randomNumber(8) . generarLetra(),
+        'dni' => $faker->randomNumber(8) . "A",
         'movil' => $faker->e164PhoneNumber,
         'website' => $faker->url,
         'about' => $faker->sentence,
@@ -41,7 +41,7 @@ $factory->define(App\User::class, function (Faker $faker) {
             'userName' => strtolower($name) . "." . strtolower($lastName),
             'email' => strtolower($name) . "." . strtolower($lastName) . "@" . $faker->freeEmailDomain,
             'avatar' => 'http://sprintresources.com/wp-content/uploads/2016/12/icon-user.png',
-            'num_colegiado' => $faker->randomNumber(9) . generarUltimosNumerosSanitarios(),
+            'num_colegiado' => $faker->randomNumber(9),
             'especialidad' => $faker->sentence,
             'movil' => $faker->e164PhoneNumber,
             'website' => $faker->url,
@@ -51,33 +51,3 @@ $factory->define(App\User::class, function (Faker $faker) {
         ];
     }
 });
-
-function generarLetra(){
-    $num = mt_rand(1,10);
-    switch ($num){
-        case 1:
-            return 'A';
-        case 2:
-            return 'B';
-        case 3:
-            return 'C';
-        case 4:
-            return 'D';
-        case 5:
-            return 'E';
-        case 6:
-            return 'F';
-        case 7:
-            return 'G';
-        case 8:
-            return 'H';
-        case 9:
-            return 'I';
-        case 10:
-            return 'J';
-    }
-}
-
-function generarUltimosNumerosSanitarios(){
-    return mt_rand(10,99);
-}

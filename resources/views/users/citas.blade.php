@@ -32,7 +32,7 @@
                                                     Esta accion no se puede deshacer, ¿esta seguro?
                                                 </div>
                                                 <div class="modal-footer">
-                                                    <button type="button" id="back" class="btn btn-primary" onclick="cerrarModal('ejemplo2');">Volver atras</button>
+                                                    <button type="button" id="back" class="btn btn-primary">Volver atras</button>
                                                     <form action="{{Route('cita.delete', $cita->id)}}" method="post">
                                                         {{csrf_field()}}
                                                         {{method_field('DELETE')}}
@@ -72,6 +72,6 @@
     @endforeach
     {{ $citas->links('pagination::bootstrap-4') }}
     @push('scripts')
-        <script src="{{ asset('js/modal.js') }}" defer></script>
+        <script src="{{ asset('js/modalCita.js') }}" defer></script>
     @endpush
 @endsection

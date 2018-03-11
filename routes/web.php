@@ -14,9 +14,6 @@
 Route::get('/', 'PagesController@home')->name('/');
 Route::get('/obtenerPaginaMedicos/', 'PagesController@obtenerPaginaMedicos');
 
-//Route::post('/medicos/create', 'MedicosController@create')->name('storeMedico');
-//Route::post('/medicos/create', 'MedicosController@store')->name('storeMedico')->middleware('auth');
-//Route::post('/medicos/validar', 'MedicosController@validar')->middleware('auth');
 Route::get('/{nombreMedico}/clinicas', 'MedicosController@clinicas')->name('clinicas');
 
 Route::get('/user/{userName}', 'UsersController@index')->name('userInfo');
@@ -32,6 +29,7 @@ Route::group(['middleware' => 'auth'], function (){
     Route::get('/profile/account', 'ProfilesController@datosCuenta');
     Route::get('/profile/avatar', 'ProfilesController@datosAvatar');
     Route::get('/profile/additional', 'ProfilesController@datosAdicionales');
+    Route::delete('/profile/delete', 'ProfilesController@destroy');
 
     Route::get('/citas', 'CitasController@showCitasUsuario');
 
@@ -48,10 +46,7 @@ Route::group(['middleware' => 'auth'], function (){
     Route::get('/obtenerMedicosClinica/{idClinica}', 'CitasController@obtenerMedicosClinica');
     Route::delete('/cita/delete/{cita}', 'CitasController@destroy')->name('cita.delete');
 });
-//Route::get('/obtenerCitasMedico/{idMedico}', 'CitasController@obtenerCitasMedico');
 
 Auth::routes();
 
 //Route::get('/home', 'HomeController@index')->name('home');
-
-Auth::routes();
