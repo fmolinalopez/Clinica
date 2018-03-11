@@ -23,6 +23,12 @@ class UserTest extends TestCase
         $this->assertTrue(true);
     }
 
+    public function testIfUserCanLogin(){
+        $user = factory(User::class)->make();
+
+        $this->actingAs($user)->get('/login')->assertStatus(302);
+    }
+
     public function testCita(){
         do{
             $user = factory(User::class)->make();
@@ -42,5 +48,15 @@ class UserTest extends TestCase
         $user = factory(User::class)->make();
 
         $this->actingAs($user)->get('/citas')->assertStatus(200);
+    }
+
+    public function testDeleteUser(){
+        $user = factory(User::class)->create();
+
+        $this->actingAs($user)->delete('/profile/delete');
+
+        $this->assertDatabaseMissing('users', [
+            'id' => $user->id,
+        ]);
     }
 }

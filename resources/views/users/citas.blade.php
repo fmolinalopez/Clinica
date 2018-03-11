@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    @foreach($citas->chunk(3) as $chunk)
+    @forelse($citas->chunk(3) as $chunk)
         @if(!$user->esMedico)
             <div class="card-group row course-set courses__row citas">
                 @foreach($chunk as $cita)
@@ -69,7 +69,11 @@
                 @endforeach
             </div>
         @endif
-    @endforeach
+    @empty
+        <div class="text-center mt-5">
+            <h1>No existe ninguna cita</h1>
+        </div>
+    @endforelse
     {{ $citas->links('pagination::bootstrap-4') }}
     @push('scripts')
         <script src="{{ asset('js/modalCita.js') }}" defer></script>

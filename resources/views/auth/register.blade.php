@@ -106,6 +106,21 @@
                                     </div>
                                 </div>
 
+                                <div class="form-group row{{ $errors->has('movil') ? ' has-error' : '' }}">
+                                    <label for="movil" class="col-lg-4 col-form-label text-lg-right">Nº Teléfono</label>
+
+                                    <div class="col-md-6">
+                                        <input id="movil" type="text" class="form-control" name="movil"
+                                               value="{{ old('movil') }}" autofocus>
+
+                                        @if ($errors->has('movil'))
+                                            <div class="alert alert-danger">
+                                                <strong>{{ $errors->first('movil') }}</strong>
+                                            </div>
+                                        @endif
+                                    </div>
+                                </div>
+
                                 <div id="dniDiv" hidden
                                      class="form-group row{{ $errors->has('dni') ? ' has-error' : '' }}">
                                     <label for="dni" class="col-lg-4 col-form-label text-lg-right">Dni (Obligatorio para
@@ -118,21 +133,6 @@
                                         @if ($errors->has('dni'))
                                             <div class="alert alert-danger">
                                                 <strong>{{ $errors->first('dni') }}</strong>
-                                            </div>
-                                        @endif
-                                    </div>
-                                </div>
-
-                                <div class="form-group row{{ $errors->has('movil') ? ' has-error' : '' }}">
-                                    <label for="movil" class="col-lg-4 col-form-label text-lg-right">Nº Teléfono</label>
-
-                                    <div class="col-md-6">
-                                        <input id="movil" type="text" class="form-control" name="movil"
-                                               value="{{ old('movil') }}" autofocus>
-
-                                        @if ($errors->has('movil'))
-                                            <div class="alert alert-danger">
-                                                <strong>{{ $errors->first('movil') }}</strong>
                                             </div>
                                         @endif
                                     </div>
