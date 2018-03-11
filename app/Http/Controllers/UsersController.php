@@ -10,6 +10,19 @@ use Illuminate\Support\Facades\Auth;
 
 class UsersController extends Controller
 {
+    private $user;
+
+    public function __construct()
+    {
+        $this->middleware( function($request, $next){
+            $this->user = auth()->user();
+
+            return $next($request);
+        });
+
+        $this->user = auth()->user();
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -17,7 +30,7 @@ class UsersController extends Controller
      */
     public function index($userName)
     {
-        $user = User::where('userName', $userName)->first();
+        $user = User::findUserByUserName($userName);
         return view(
             'users.index', [
                 'user' => $user,
@@ -33,7 +46,7 @@ class UsersController extends Controller
      */
     public function conversation($medico)
     {
-        $medico = User::where('name', $medico)->first();
+        $medico = User::findUserByName($medico);
 
         return view('conversations.index', [
             'medico' => $medico
@@ -42,7 +55,7 @@ class UsersController extends Controller
 
     public function showConversations()
     {
-        $user = Auth::user();
+        $user = $this->user;
 
         return view('conversations.showConversation', [
             'user' => $user,
@@ -50,8 +63,8 @@ class UsersController extends Controller
     }
 
     public function showMessages($conversationId){
-        $esMedico = Auth::user()->esMedico;
-        $conversation = Conversation::where('id', $conversationId)->first();
+        $esMedico = $this->user->esMedico;
+        $conversation = Conversation::findConversationById($conversationId);
         $messages = $conversation->messages()->get();
 
         return view('conversations.messages', [
@@ -69,8 +82,8 @@ class UsersController extends Controller
      */
     public function crearConversation($medico, Request $request)
     {
-        $medico = User::where('name', $medico)->first();
-        $user = Auth::user();
+        $medico = User::findUserByName($medico);
+        $user = $this->user;
 
         $message = $request->input('message');
 
@@ -83,61 +96,6 @@ class UsersController extends Controller
         ]);
 
         return redirect("/conversation/{$conversation->id}/messages");
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request $request
-     * @param  int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
     }
 
     /**

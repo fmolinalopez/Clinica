@@ -72,4 +72,8 @@ class Cita extends Model
         $users = $cita->users()->get();
         return ($users[0]->esMedico === 1 ? $users[1] : $users[0]);
     }
+
+    public static function findCitaOfMedicoByFecha($medico, $fecha){
+        return $medico->citas()->where('fecha_cita', $fecha)->first();
+    }
 }

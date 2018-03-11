@@ -31,7 +31,8 @@ class User extends Authenticatable
      * Relacion entre citas y usuarios, un usuario pertenece a varias citas
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
-    public function citas(){
+    public function citas()
+    {
         return $this->belongsToMany(Cita::class);
     }
 
@@ -39,11 +40,24 @@ class User extends Authenticatable
      * Relacion entre clinicas y usuarios, un usuario pertenece a varias clinicas.
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
-    public function clinicas(){
+    public function clinicas()
+    {
         return $this->belongsToMany(Clinica::class);
     }
 
-    public function conversations(){
+    public function conversations()
+    {
         return $this->belongsToMany(Conversation::class);
     }
+
+    public static function findUserByUserName($userName)
+    {
+        return User::where('userName', $userName)->first();
+    }
+
+    public static function findUserByName($name){
+        return User::where('name', $name)->first();
+    }
+
+
 }

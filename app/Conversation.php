@@ -57,4 +57,8 @@ class Conversation extends Model
         $users = $conversation->users()->get();
         return ($users[0]->esMedico === 1 ? $users[1] : $users[0]);
     }
+
+    public static function findConversationById($id){
+        return Conversation::where('id', $id)->first();
+    }
 }

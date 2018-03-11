@@ -9,12 +9,25 @@ use Illuminate\Support\Facades\View;
 
 class PagesController extends Controller
 {
+    private $user;
+
+    public function __construct()
+    {
+        $this->middleware( function($request, $next){
+            $this->user = auth()->user();
+
+            return $next($request);
+        });
+
+        $this->user = auth()->user();
+    }
+
     /**
      * Funcion que devuelve la vusta home con los datos del usuario logeado.
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function home(){
-        $user = Auth::user();
+        $user = $this->user;
 
         return view('home', [
             'user' => $user,

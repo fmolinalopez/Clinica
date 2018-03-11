@@ -8,6 +8,19 @@ use Illuminate\Support\Facades\Auth;
 
 class ClinicasController extends Controller
 {
+    private $user;
+
+    public function __construct()
+    {
+        $this->middleware( function($request, $next){
+            $this->user = auth()->user();
+
+            return $next($request);
+        });
+
+        $this->user = auth()->user();
+    }
+
     /**
      * Funcion que devuelve la vista clinicas.elegirClinica con la variable $clinicas
      * que guarda todas las clinicas existentes en la bd.
@@ -41,7 +54,7 @@ class ClinicasController extends Controller
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function sincronizarClinicas(Request $request){
-        $user = Auth::user();
+        $user = $this->user;
         $clincas = $request->input('clinicas');
 
         $user->clinicas()->sync($clincas);

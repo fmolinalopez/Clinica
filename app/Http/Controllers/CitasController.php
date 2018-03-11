@@ -13,6 +13,19 @@ use Illuminate\Support\Facades\View;
 
 class CitasController extends Controller
 {
+    private $user;
+
+    public function __construct()
+    {
+        $this->middleware( function($request, $next){
+            $this->user = auth()->user();
+
+            return $next($request);
+        });
+
+        $this->user = auth()->user();
+    }
+
     /**
      * Funcion que devuele la vista citas.create con la variable $clinicas
      * que guarda todas las clinicas existentes
@@ -34,7 +47,7 @@ class CitasController extends Controller
      */
     public function showCitasUsuario()
     {
-        $user = Auth::user();
+        $user = $this->user;
         $citas = $user->citas()->latest()->paginate(10);
 
         return view('users.citas', [
@@ -50,8 +63,8 @@ class CitasController extends Controller
      */
     public function store(Request $request)
     {
-        $user = Auth::user();
-        $medico = User::where("id", $request->input('medico'))->first();
+        $user = $this->user;
+        $medico = User::find($request->input('medico'))->first();
         $clinicaId = $request->input('clinica');
         $fecha = $request->input('horaCita');
 
@@ -70,7 +83,7 @@ class CitasController extends Controller
     {
         if (request()->ajax()) {
             $selectedClinicaId = $idClinica;
-            $selectedClinica = Clinica::where('id', $selectedClinicaId)->first();
+            $selectedClinica = Clinica::find($selectedClinicaId)->first();
 
             return View::make('citas.selectMedico', array(
                 'selectedClinica' => $selectedClinica,
@@ -90,9 +103,9 @@ class CitasController extends Controller
     public function validar(Request $request)
     {
         $idMedico = $_POST['idMedico'];
-        $medico = User::where('id', $idMedico)->first();
+        $medico = User::find($idMedico)->first();
         $fecha = $_POST['fecha'];
-        $checkFecha = $medico->citas()->where('fecha_cita', $fecha)->first();
+        $checkFecha = Cita::findCitaOfMedicoByFecha($medico, $fecha);
         if ($fecha === "") {
             return array("noDate");
         } else {

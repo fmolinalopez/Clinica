@@ -11,6 +11,19 @@ use Illuminate\Support\Facades\View;
 
 class ProfilesController extends Controller
 {
+    private $user;
+
+    public function __construct()
+    {
+        $this->middleware( function($request, $next){
+            $this->user = auth()->user();
+
+            return $next($request);
+        });
+
+        $this->user = auth()->user();
+    }
+
     /**
      * Funcion que devuleve la vista profile con los datos del usuario logeado.
      * @param Request $request
@@ -32,7 +45,7 @@ class ProfilesController extends Controller
      */
     public function edit(Request $request)
     {
-        $user = Auth::user();
+        $user = $this->user;
 
         return view('profiles.edit', [
             'user' => $user
@@ -48,7 +61,7 @@ class ProfilesController extends Controller
     public function update(Request $request)
     {
         $route = $request->input('route');
-        $user = User::findOrFail(Auth::user()->id);
+        $user = User::findOrFail($this->user->id);
         $data = array_filter($request->all());
 
         switch ($route) {
@@ -79,7 +92,7 @@ class ProfilesController extends Controller
                     $user->email = $data['email'];
                 }
                 if (array_key_exists("current_password", $data)) {
-                    if (!Hash::check($data['current_password'], Auth::user()->password)) {
+                    if (!Hash::check($data['current_password'], $this->user->password)) {
                         return redirect()->back()->with('error', 'La constraseña actual no es correcta');
                     }
                     if (strcmp($data['current_password'], $request->get('password')) == 0) {
@@ -114,7 +127,7 @@ class ProfilesController extends Controller
     public function datosPersonales()
     {
         if (request()->ajax()) {
-            return View::make('profiles.partials.personal', ['user' => Auth::user()])->render();
+            return View::make('profiles.partials.personal', ['user' => $this->user])->render();
         } else {
             return redirect('/');
         }
@@ -127,7 +140,7 @@ class ProfilesController extends Controller
     public function datosCuenta()
     {
         if (request()->ajax()) {
-            return View::make('profiles.partials.account', ['user' => Auth::user()])->render();
+            return View::make('profiles.partials.account', ['user' => $this->user])->render();
         } else {
             return redirect('/');
         }
@@ -140,7 +153,7 @@ class ProfilesController extends Controller
     public function datosAvatar()
     {
         if (request()->ajax()) {
-            return View::make('profiles.partials.avatar', ['user' => Auth::user()])->render();
+            return View::make('profiles.partials.avatar', ['user' => $this->user])->render();
         } else {
             return redirect('/');
         }
@@ -153,7 +166,7 @@ class ProfilesController extends Controller
     public function datosAdicionales()
     {
         if (request()->ajax()) {
-            return View::make('profiles.partials.additional', ['user' => Auth::user()])->render();
+            return View::make('profiles.partials.additional', ['user' => $this->user])->render();
         } else {
             return redirect('/');
         }
