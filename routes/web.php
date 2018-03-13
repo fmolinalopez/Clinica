@@ -39,6 +39,7 @@ Route::group(['middleware' => 'auth'], function (){
     Route::post('/conversation/{user}', 'UsersController@crearConversation');
     Route::get('/conversations', 'UsersController@showConversations');
     Route::get('/conversation/{conversation}/messages', 'UsersController@showMessages');
+    Route::post('/message/validar', 'UsersController@validateMessage');
 
     Route::get('/cita', 'CitasController@crearCita')->name('askCita')->middleware('notMedico');
     Route::post('/cita/crear', 'CitasController@store')->name('crearCita');
