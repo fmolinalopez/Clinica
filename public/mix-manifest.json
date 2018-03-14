@@ -1,7 +1,6 @@
 {
     "/js/app.js": "/js/app.js",
     "/css/app.css": "/css/app.css",
-    "/js/jquery.datetimepicker.full.js": "/js/jquery.datetimepicker.full.js",
     "/js/select2.js": "/js/select2.js",
     "/js/validarUser.js": "/js/validarUser.js",
     "/js/validarConversation.js": "/js/validarConversation.js",
