@@ -184,20 +184,14 @@
                         <p>¿Que desea hacer?</p>
                     </div>
 
-                    <div class="col-lg-6">
-                        <a href="/profile">Ir al perfil</a>
+                    <div class="list-group col-lg-6">
+                        <a href="/profile" class="list-group-item list-group-item-action">Ir al perfil</a>
+                        <a href="citas" class="list-group-item list-group-item-action">Mostrar citas</a>
                     </div>
 
-                    <div class="col-lg-6">
-                        <a href="/{{$user->userName}}/clinicas/elegir">Modificar clinicas</a>
-                    </div>
-
-                    <div class="col-lg-6">
-                        <a href="/citas">Mostrar citas</a>
-                    </div>
-
-                    <div class="col-lg-6">
-                        <a href="/conversations">Mostrar conversaciones</a>
+                    <div class="list-group col-lg-6">
+                        <a href="/{{$user->userName}}/clinicas/elegir" class="list-group-item list-group-item-action">Modificar Clinicas</a>
+                        <a href="/conversations" class="list-group-item list-group-item-action">Mostrar Conversaciones</a>
                     </div>
                 </div>
             @else
@@ -206,21 +200,16 @@
                         <p>¿Que desea hacer?</p>
                     </div>
 
-                    <div class="col-lg-6">
-                        <a href="/profile">Ir al perfil</a>
+                    <div class="list-group col-lg-6">
+                        <a href="/profile" class="list-group-item list-group-item-action">Ir al perfil</a>
+                        <a href="citas" class="list-group-item list-group-item-action">Mostrar citas</a>
                     </div>
 
-                    <div class="col-lg-6">
-                        <a href="/cita">Pedir cita</a>
+                    <div class="list-group col-lg-6">
+                        <a href="/cita" class="list-group-item list-group-item-action">Pedir cita</a>
+                        <a href="/conversations" class="list-group-item list-group-item-action">Mostrar Conversaciones</a>
                     </div>
 
-                    <div class="col-lg-6">
-                        <a href="/citas">Mostrar citas</a>
-                    </div>
-
-                    <div class="col-lg-6">
-                        <a href="/conversations">Mostrar conversaciones</a>
-                    </div>
                 </div>
             @endif
         </div>

@@ -1,9 +1,12 @@
 function obtenerDatosPersonales() {
-    $("#editButton").on("click",enviarFormulario);
+    $("#editButton").on("click", enviarFormulario);
     elegir('personal');
+    $(".spinner").prop("hidden", false);
+    $("#editButton").prop("hidden", true);
     axios.get(`/profile/personal`)
-        .then(function(response){
-            // $('#spinner').show();
+        .then(function (response) {
+            $(".spinner").prop("hidden", true);
+            $("#editButton").prop("hidden", false);
             $("#chosenInfo").empty();
             $("#chosenInfo").append(response.data);
         }).catch(function (error) {
@@ -12,11 +15,14 @@ function obtenerDatosPersonales() {
 }
 
 function obtenerDatosCuenta() {
-    $("#editButton").on("click",enviarFormulario);
+    $("#editButton").on("click", enviarFormulario);
     elegir('account');
+    $(".spinner").prop("hidden", false);
+    $("#editButton").prop("hidden", true);
     axios.get(`/profile/account`)
-        .then(function(response){
-            // $('#spinner').show();
+        .then(function (response) {
+            $(".spinner").prop("hidden", true);
+            $("#editButton").prop("hidden", false);
             $("#chosenInfo").empty();
             $("#chosenInfo").append(response.data);
         }).catch(function (error) {
@@ -25,11 +31,14 @@ function obtenerDatosCuenta() {
 }
 
 function obtenerDatosAvatar() {
-    $("#editButton").on("click",enviarFormulario);
+    $("#editButton").on("click", enviarFormulario);
     elegir('avatar');
+    $(".spinner").prop("hidden", false);
+    $("#editButton").prop("hidden", true);
     axios.get(`/profile/avatar`)
-        .then(function(response){
-            // $('#spinner').show();
+        .then(function (response) {
+            $(".spinner").prop("hidden", true);
+            $("#editButton").prop("hidden", false);
             $("#chosenInfo").empty();
             $("#chosenInfo").append(response.data);
         }).catch(function (error) {
@@ -38,11 +47,14 @@ function obtenerDatosAvatar() {
 }
 
 function obtenerDatosAdicionales() {
-    $("#editButton").on("click",enviarFormulario);
+    $("#editButton").on("click", enviarFormulario);
     elegir('additional');
+    $(".spinner").prop("hidden", false);
+    $("#editButton").prop("hidden", true);
     axios.get(`/profile/additional`)
-        .then(function(response){
-            // $('#spinner').show();
+        .then(function (response) {
+            $(".spinner").prop("hidden", true);
+            $("#editButton").prop("hidden", false);
             $("#chosenInfo").empty();
             $("#chosenInfo").append(response.data);
         }).catch(function (error) {
@@ -55,7 +67,7 @@ function elegir(elegido) {
     $("#account").removeClass("bg-light");
     $("#avatar").removeClass("bg-light");
     $("#additional").removeClass("bg-light");
-    switch (elegido){
+    switch (elegido) {
         case 'personal':
             $("#personal").addClass("bg-light");
             break;
@@ -71,14 +83,14 @@ function elegir(elegido) {
     }
 }
 
-function asociarEventoPerfil(){
-    $("#personal").on("click",obtenerDatosPersonales);
-    $("#account").on("click",obtenerDatosCuenta);
-    $("#avatar").on("click",obtenerDatosAvatar);
-    $("#additional").on("click",obtenerDatosAdicionales);
+function asociarEventoPerfil() {
+    $("#personal").on("click", obtenerDatosPersonales);
+    $("#account").on("click", obtenerDatosCuenta);
+    $("#avatar").on("click", obtenerDatosAvatar);
+    $("#additional").on("click", obtenerDatosAdicionales);
 }
 
-$(function(){
+$(function () {
     asociarEventoPerfil();
 
 });

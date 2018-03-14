@@ -26,6 +26,9 @@
                                             </div>
                                         @endif
                                     </div>
+                                    <div class="spinner" hidden>
+                                        @include('layouts.spinner')
+                                    </div>
                                 </div>
 
                                 <div class="form-group row{{ $errors->has('lastName') ? ' has-error' : '' }}">
@@ -41,6 +44,9 @@
                                                 <strong>{{ $errors->first('lastName') }}</strong>
                                             </div>
                                         @endif
+                                    </div>
+                                    <div class="spinner" hidden>
+                                        @include('layouts.spinner')
                                     </div>
                                 </div>
 
@@ -58,6 +64,9 @@
                                             </div>
                                         @endif
                                     </div>
+                                    <div class="spinner" hidden>
+                                        @include('layouts.spinner')
+                                    </div>
                                 </div>
 
                                 <div class="form-group row{{ $errors->has('email') ? ' has-error' : '' }}">
@@ -73,6 +82,9 @@
                                             </div>
                                         @endif
                                     </div>
+                                    <div class="spinner" hidden>
+                                        @include('layouts.spinner')
+                                    </div>
                                 </div>
 
                                 <div class="form-group row{{ $errors->has('num_sanitario') ? ' has-error' : '' }}">
@@ -87,6 +99,9 @@
                                                 <strong>{{ $errors->first('num_sanitario') }}</strong>
                                             </div>
                                         @endif
+                                    </div>
+                                    <div class="spinner" hidden>
+                                        @include('layouts.spinner')
                                     </div>
                                 </div>
 
@@ -104,6 +119,9 @@
                                             </div>
                                         @endif
                                     </div>
+                                    <div class="spinner" hidden>
+                                        @include('layouts.spinner')
+                                    </div>
                                 </div>
 
                                 <div class="form-group row{{ $errors->has('movil') ? ' has-error' : '' }}">
@@ -118,6 +136,9 @@
                                                 <strong>{{ $errors->first('movil') }}</strong>
                                             </div>
                                         @endif
+                                    </div>
+                                    <div class="spinner" hidden>
+                                        @include('layouts.spinner')
                                     </div>
                                 </div>
 
@@ -138,6 +159,9 @@
                                             </div>
                                         @endif
                                     </div>
+                                    <div class="spinner" hidden>
+                                        @include('layouts.spinner')
+                                    </div>
                                 </div>
 
                                 <div class="form-group row">
@@ -155,6 +179,9 @@
                                                 <strong>{{ $errors->first('password_confirmation') }}</strong>
                                             </div>
                                         @endif
+                                    </div>
+                                    <div class="spinner" hidden>
+                                        @include('layouts.spinner')
                                     </div>
                                 </div>
 
@@ -197,6 +224,9 @@
                                             </div>
                                         @endif
                                     </div>
+                                    <div class="spinner" hidden>
+                                        @include('layouts.spinner')
+                                    </div>
                                 </div>
 
                                 <div class="form-group row{{ $errors->has('lastName') ? ' has-error' : '' }}">
@@ -212,6 +242,9 @@
                                                 <strong>{{ $errors->first('lastName') }}</strong>
                                             </div>
                                         @endif
+                                    </div>
+                                    <div class="spinner" hidden>
+                                        @include('layouts.spinner')
                                     </div>
                                 </div>
 
@@ -229,6 +262,9 @@
                                             </div>
                                         @endif
                                     </div>
+                                    <div class="spinner" hidden>
+                                        @include('layouts.spinner')
+                                    </div>
                                 </div>
 
                                 <div class="form-group row{{ $errors->has('email') ? ' has-error' : '' }}">
@@ -243,6 +279,9 @@
                                                 <strong>{{ $errors->first('email') }}</strong>
                                             </div>
                                         @endif
+                                    </div>
+                                    <div class="spinner" hidden>
+                                        @include('layouts.spinner')
                                     </div>
                                 </div>
 
@@ -260,6 +299,9 @@
                                             </div>
                                         @endif
                                     </div>
+                                    <div class="spinner" hidden>
+                                        @include('layouts.spinner')
+                                    </div>
                                 </div>
 
                                 <div class="form-group row{{ $errors->has('num_colegiado') ? ' has-error' : '' }}">
@@ -276,6 +318,9 @@
                                             </div>
                                         @endif
                                     </div>
+                                    <div class="spinner" hidden>
+                                        @include('layouts.spinner')
+                                    </div>
                                 </div>
 
                                 <div class="form-group row{{ $errors->has('movil') ? ' has-error' : '' }}">
@@ -291,6 +336,9 @@
                                             </div>
                                         @endif
                                     </div>
+                                    <div class="spinner" hidden>
+                                        @include('layouts.spinner')
+                                    </div>
                                 </div>
 
                                 <div class="form-group row{{ $errors->has('password') ? ' has-error' : '' }}">
@@ -305,6 +353,9 @@
                                                 <strong>{{ $errors->first('password') }}</strong>
                                             </div>
                                         @endif
+                                    </div>
+                                    <div class="spinner" hidden>
+                                        @include('layouts.spinner')
                                     </div>
                                 </div>
 
@@ -323,6 +374,9 @@
                                                 <strong>{{ $errors->first('password_confirmation') }}</strong>
                                             </div>
                                         @endif
+                                    </div>
+                                    <div class="spinner" hidden>
+                                        @include('layouts.spinner')
                                     </div>
                                 </div>
 

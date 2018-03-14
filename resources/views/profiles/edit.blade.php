@@ -50,6 +50,9 @@
         </div>
         <div class="card-footer bg-primary">
             <button id="editButton" class="btn btn-primary">Actualizar perfil</button>
+            <div class="spinner" hidden>
+                @include('layouts.spinner')
+            </div>
             <a href="/profile"><button class="btn btn-primary">Volver al perfil</button></a>
             <button id="btnDeleteUser" class="btn btn-danger">Borrar Usuario</button>
             <div class="modal fade" id="borrarProfile" tabindex="-1" data-backdrop="static" data-show="false">
