@@ -69,15 +69,25 @@
         </div>
     </div>
 
-    <div class="footer bg-primary">
-        <div>
-            <span>
-                <strong>
-                    TEST FOOTER
-                </strong>
-            </span>
+    <footer class="fixed-bottom bg-primary">
+        <div class="row">
+            <div class="col-lg-2 text-left">
+                <h1 class="titulo"><a href="/"><strong>Clinica</strong></a></h1>
+            </div>
+            <div class="col-lg-10 text-right">
+                    <div class="text-right">
+                        <a href="https://github.com/fmolinalopez/Clinica"><img src="{{ asset('images/github.svg') }}" class="footerIcon" alt="github"></a>
+                    </div>
+                    <div class="text-right mt-1">
+                        <a href="https://www.facebook.com/"><img src="{{ asset('images/facebook.png') }}" class="footerIcon" alt="facebook"></a>
+                    </div>
+                    <div class="text-right mt-1">
+                        <a href="https://www.twitter.com"><img src="{{ asset('images/twitter.png') }}" class="footerIcon" alt="twitter"></a>
+                    </div>
+                </div>
         </div>
-    </div>
+        <p class="text-center mt-3"> Copyright © All right reserved. </p>
+    </footer>
 
 
     <!-- Scripts -->

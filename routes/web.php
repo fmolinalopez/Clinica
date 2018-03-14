@@ -22,6 +22,7 @@ Route::group(['middleware' => 'auth'], function (){
     Route::get('/{user}/clinicas/elegir', 'ClinicasController@elegirClinicas');
     Route::post('/{user}/clinicas/elegir', 'ClinicasController@sincronizarClinicas');
 
+
     Route::get('/profile', 'ProfilesController@profile')->name('profile');
     Route::get('/profile/edit', 'ProfilesController@edit')->name('profile.edit');
     Route::patch('/profile/edit', 'ProfilesController@update');
@@ -49,5 +50,6 @@ Route::group(['middleware' => 'auth'], function (){
 });
 
 Auth::routes();
+Route::post('/register/validar', 'UsersController@validarRegistroAsync');
 
 //Route::get('/home', 'HomeController@index')->name('home');

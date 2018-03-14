@@ -8,7 +8,7 @@
                     <div class="card">
                         <div class="card-header">Registro de Usuario</div>
                         <div class="card-body">
-                            <form role="form" method="POST" action="{{ url('/register') }}">
+                            <form class="registerForm" role="form" method="POST" action="{{ url('/register') }}">
                                 {!! csrf_field() !!}
 
                                 <input type="hidden" name="type" value="false">
@@ -191,7 +191,7 @@
                     <div class="card">
                         <div class="card-header">Registro de Medico</div>
                         <div class="card-body">
-                            <form role="form" method="POST" action="{{ url('/register') }}">
+                            <form class="registerForm" role="form" method="POST" action="{{ url('/register') }}">
                                 {!! csrf_field() !!}
 
                                 <input type="hidden" name="type" value="true">
@@ -326,6 +326,7 @@
                                     <div class="col-lg-6">
                                         <input
                                                 type="password"
+                                                id="password_confirmation"
                                                 class="form-control{{ $errors->has('password_confirmation') ? ' is-invalid' : '' }}"
                                                 name="password_confirmation"
                                         >
@@ -339,7 +340,7 @@
 
                                 <div class="form-group row">
                                     <div class="col-lg-6 offset-lg-4">
-                                        <button type="submit" class="btn btn-primary">
+                                        <button type="submit" id="btnRegister" class="btn btn-primary">
                                             Registrarse
                                         </button>
                                     </div>
@@ -351,4 +352,7 @@
             </div>
         </div>
     @endif
+    @push('scripts')
+        <script src="{{ asset('js/validarUser.js') }}" defer></script>
+    @endpush
 @endsection

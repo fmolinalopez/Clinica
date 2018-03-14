@@ -74,7 +74,9 @@
             <h1>No existe ninguna cita</h1>
         </div>
     @endforelse
-    {{ $citas->links('pagination::bootstrap-4') }}
+    <div class="mt-5">
+        {{ $citas->links('pagination::bootstrap-4') }}
+    </div>
     @push('scripts')
         <script src="{{ asset('js/modalCita.js') }}" defer></script>
     @endpush

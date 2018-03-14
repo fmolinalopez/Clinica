@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Conversation;
+use App\Http\Requests\CreateUserAsyncRequest;
 use App\Http\Requests\MessageRequest;
 use App\Message;
 use App\User;
@@ -18,7 +19,7 @@ class UsersController extends Controller
 
     public function __construct()
     {
-        $this->middleware( function($request, $next){
+        $this->middleware(function ($request, $next) {
             $this->user = auth()->user();
 
             return $next($request);
@@ -66,7 +67,8 @@ class UsersController extends Controller
         ]);
     }
 
-    public function showMessages($conversationId){
+    public function showMessages($conversationId)
+    {
         $esMedico = $this->user->esMedico;
         $conversation = Conversation::findConversationById($conversationId);
         $messages = $conversation->messages()->get();
@@ -102,20 +104,26 @@ class UsersController extends Controller
         return redirect("/conversation/{$conversation->id}/messages");
     }
 
-    public function validateMessage(Request $request){
+    public function validarRegistroAsync(CreateUserAsyncRequest $request)
+    {
+        return array();
+    }
+
+    public function validateMessage(Request $request)
+    {
         $message = $request->input('content');
-        if ($message == ""){
+        if ($message == "") {
             $errors = [];
             $errors['content'] = 'Introduce un mensaje';
 
         }
 
-        if (strlen($message) > 100){
+        if (strlen($message) > 100) {
             $errors = [];
             $errors['content'] = "El mensaje no puede tener mas de 100 caracteres";
         }
 
-        if (isset($errors)){
+        if (isset($errors)) {
             return $errors;
         }
         return array();

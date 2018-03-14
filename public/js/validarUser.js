@@ -1,6 +1,7 @@
 function gestionarErrores(input, errores) {
     let errors = false;
     input = $(input);
+    input.next().empty();
     if (typeof errores !== typeof undefined) {
         input.removeClass("is-invalid");
         input.addClass("is-invalid");
@@ -25,7 +26,7 @@ function validateTarget(target) {
     console.log(target.value);
     formData.append(input.id, input.value);
     // $(target).parent().next(".spinner").addClass("sk-circle");
-    axios.post('/user/register/validar',
+    axios.post('/register/validar',
         formData
     ).then(function (response) {
         // $(target).parent().next(".spinner").removeClass("sk-circle");
@@ -66,6 +67,9 @@ function validateTarget(target) {
             case "password":
                 gestionarErrores(target, response.data.password);
                 break;
+            case "password_confirmation":
+                gestionarErrores(target, response.data.password_confirmation);
+                break;
         }
     }).catch(function (error) {
         console.log(error);
@@ -73,7 +77,7 @@ function validateTarget(target) {
 }
 
 $(function () {
-    $("#name, #lastName, #email, #userName, #num_sanitario, #birthdate, #dni, #movil, #num_colegiado, #especialidad, #curriculum, #password").on('change', function (e) {
+    $("#name, #lastName, #email, #userName, #num_sanitario, #birthdate, #dni, #movil, #num_colegiado, #especialidad, #curriculum, #password, #password_confirmation").on('change', function (e) {
         validateTarget(e.target)
     });
 
@@ -93,8 +97,9 @@ $(function () {
         formData.append('especialidad', $("#especialidad").val());
         formData.append('curriculum', $("#curriculum").val());
         formData.append('password', $("#password").val());
+        formData.append('password_confirmation', $("#password_confirmation").val());
 
-        axios.post('/medicos/validar', formData)
+        axios.post('/register/validar', formData)
             .then(function (response) {
                 if (gestionarErrores("#name", response.data.name)) {
                     submit = false;
@@ -132,6 +137,10 @@ $(function () {
                     submit = false;
                 }
 
+                if (gestionarErrores("#especialidad", response.data.especialidad)) {
+                    submit = false;
+                }
+
                 if (gestionarErrores("#curriculum", response.data.curriculum)) {
                     submit = false;
                 }
@@ -140,8 +149,12 @@ $(function () {
                     submit = false;
                 }
 
+                if (gestionarErrores("#password_confirmation", response.data.password_confirmation)) {
+                    submit = false;
+                }
+
                 if (submit === true){
-                    $("#medicoForm").submit();
+                    $(".registerForm").submit();
                 }
             });
     });

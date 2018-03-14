@@ -48,7 +48,7 @@ class CitasController extends Controller
     public function showCitasUsuario()
     {
         $user = $this->user;
-        $citas = $user->citas()->latest()->paginate(10);
+        $citas = $user->citas()->latest()->paginate(3);
 
         return view('users.citas', [
             'user' => $user,
