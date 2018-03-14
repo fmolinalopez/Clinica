@@ -1,4 +1,16 @@
 {
     "/js/app.js": "/js/app.js",
-    "/css/app.css": "/css/app.css"
+    "/css/app.css": "/css/app.css",
+    "/js/jquery.datetimepicker.full.js": "/js/jquery.datetimepicker.full.js",
+    "/js/select2.js": "/js/select2.js",
+    "/js/validarUser.js": "/js/validarUser.js",
+    "/js/validarConversation.js": "/js/validarConversation.js",
+    "/js/pedirCita.js": "/js/pedirCita.js",
+    "/js/multiselect.js": "/js/multiselect.js",
+    "/js/modalProfile.js": "/js/modalProfile.js",
+    "/js/modalCita.js": "/js/modalCita.js",
+    "/js/editarPerfil.js": "/js/editarPerfil.js",
+    "/js/edad.js": "/js/edad.js",
+    "/js/datos.js": "/js/datos.js",
+    "/js/collapse.js": "/js/collapse.js"
 }
