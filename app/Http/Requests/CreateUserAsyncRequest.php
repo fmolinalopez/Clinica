@@ -59,6 +59,14 @@ class CreateUserAsyncRequest extends CreateUserRequest
             $rules['num_sanitario'] = $this->validarNumSanitario();
         }
 
+        if($this->exists('birthdate')) {
+            $rules['birthdate'] = $this->validarBirthdate();
+        }
+
+        if($this->exists('dni')) {
+            $rules['dni'] = $this->validarDnidni();
+        }
+
         if($this->exists('password')) {
             $rules['password'] = $this->validarPassword();
         }
@@ -82,6 +90,8 @@ class CreateUserAsyncRequest extends CreateUserRequest
             'movil' => $errors->get('movil'),
             'num_colegiado' => $errors->get('num_colegiado'),
             'num_sanitario' => $errors->get('num_sanitario'),
+            'birthdate' => $errors->get('birthdate'),
+            'dni' => $errors->get('dni'),
             'password' => $errors->get('password'),
             'password_confirmation' => $errors->get('password_confirmation')
         ]);

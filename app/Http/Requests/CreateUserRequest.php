@@ -32,6 +32,8 @@ class CreateUserRequest extends FormRequest
         $rules['especialidad'] = $this->validarEspecialidad();
         $rules['num_colegiado'] = $this->validarNumColegiado();
         $rules['num_sanitario'] = $this->validarNumSanitario();
+        $rules['birthdate'] = $this->validarBirthdate();
+        $rules['dni'] = $this->validarDnidni();
         $rules['movil'] = $this->validarMovil();
         $rules['password'] = $this->validarPassword();
         $rules['password_confirmation'] = $this->validarPasswordConfirmation();
@@ -53,6 +55,8 @@ class CreateUserRequest extends FormRequest
         $mensajesEspecialidad = $this->mensajesEspecialidad();
         $mensajesNumColegiado = $this->mensajesNumColegiado();
         $mensajesNumSanitario = $this->mensajesNumSanitario();
+        $mensajesBirthdate = $this->mensajesBirthdate();
+        $mensajesDni = $this->mensajesDni();
         $mesnajesMovil = $this->mensajesMovil();
         $mesnajesPassword = $this->mensajesPassword();
         $mesnajesPasswordConfirmation = $this->mensajesPasswordConfirmation();
@@ -64,6 +68,8 @@ class CreateUserRequest extends FormRequest
             $mensajesEspecialidad,
             $mensajesNumColegiado,
             $mensajesNumSanitario,
+            $mensajesBirthdate,
+            $mensajesDni,
             $mesnajesMovil,
             $mesnajesPassword,
             $mesnajesPasswordConfirmation
@@ -92,12 +98,12 @@ class CreateUserRequest extends FormRequest
 
     public function validarMovil()
     {
-        return 'required|numeric|int|digits:9|unique:users';
+        return 'required|numeric|integer|digits:9|unique:users';
     }
 
     public function validarNumColegiado()
     {
-        return 'required|integer|unique:users';
+        return 'required|unique:users';
     }
 
     public function validarPassword()
@@ -152,7 +158,7 @@ class CreateUserRequest extends FormRequest
         $mensajes = array();
         $mensajes['movil.required'] = 'El campo Movil es obligatorio';
         $mensajes['movil.numeric'] = 'El campo Movil debe constar solo de numeros';
-        $mensajes['movil.int'] = 'El campo Movil debe constar solo de numeros enteros';
+        $mensajes['movil.integer'] = 'El campo Movil debe constar solo de numeros enteros';
         $mensajes['movil.digits'] = 'El campo Movil debe constar de 9 numeros';
         $mensajes['movil.unique'] = 'Ese tlf movil ya esta en uso';
         return $mensajes;
@@ -161,7 +167,7 @@ class CreateUserRequest extends FormRequest
     public function mensajesNumColegiado(){
         $mensajes = array();
         $mensajes['num_colegiado.required'] = 'El campo Nº de colegiado es obligatorio';
-        $mensajes['num_colegiado.integer'] = 'El campo Nº de colegiado debe constar solo de numeros enteros';
+//        $mensajes['num_colegiado.integer'] = 'El campo Nº de colegiado debe constar solo de numeros enteros';
         $mensajes['num_colegiado.unique'] = 'Ese Nº de colegiado ya existe';
         return $mensajes;
     }
@@ -184,13 +190,38 @@ class CreateUserRequest extends FormRequest
 
     public function validarNumSanitario()
     {
+        return 'required|unique:users';
+    }
+
+    public function validarBirthdate(){
         return 'required';
+    }
+
+    public function validarDnidni(){
+        return 'required|string';
     }
 
     public function mensajesNumSanitario()
     {
         $mensajes = array();
         $mensajes['num_sanitario.required'] = 'El campo Nº Sanitario es obligatorio';
+        $mensajes['num_sanitario.unique'] = 'Ese nº sanitario ya existe';
+//        $mensajes['num_sanitario.numeric'] = 'El Nº Sanitario debe ser un numero';
+//        $mensajes['num_sanitario.integer'] = 'El Nº Sanitario debe ser un numero entero';
+        return $mensajes;
+    }
+
+    public function mensajesBirthdate(){
+        $mensajes = array();
+        $mensajes['birthdate.required'] = 'El campo Fecha de nacimiento es obligatorio';
+//        $mensajes['birthdate.date'] = 'El campo Fecha de nacimiento debe de ser una fecha valida';
+        return $mensajes;
+    }
+
+    public function mensajesDni(){
+        $mensajes = array();
+        $mensajes['dni.required'] = 'El campo DNi es obligatorio';
+        $mensajes['dni.string'] = 'El campo DNi debe de ser una cadena de caracteres';
         return $mensajes;
     }
 }

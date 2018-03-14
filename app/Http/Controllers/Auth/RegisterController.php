@@ -149,7 +149,7 @@ class RegisterController extends Controller
                 'email' => $data['email'],
                 'num_sanitario' => $data['num_sanitario'],
                 'birthdate' => $data['birthdate'],
-                'dni' => $data['dni'],
+                'dni' => $data['dni'] ?? "",
                 'movil' => $data['movil'],
                 'avatar' => 'http://sprintresources.com/wp-content/uploads/2016/12/icon-user.png',
                 'password' => bcrypt($data['password']),

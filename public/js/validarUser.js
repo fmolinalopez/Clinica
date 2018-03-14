@@ -81,7 +81,7 @@ $(function () {
         validateTarget(e.target)
     });
 
-    $("#btnRegister").click(function (e) {
+    $(".btnRegister").click(function (e) {
         e.preventDefault();
         let submit = true;
         let formData = new FormData;

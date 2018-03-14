@@ -10,6 +10,7 @@ use App\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\View;
 use Illuminate\Validation\ValidationException;
 use function MongoDB\BSON\toJSON;
 
@@ -102,6 +103,10 @@ class UsersController extends Controller
         ]);
 
         return redirect("/conversation/{$conversation->id}/messages");
+    }
+
+    public function obtenerDniField(){
+        return View::make('auth.partials.dni')->render();
     }
 
     public function validarRegistroAsync(CreateUserAsyncRequest $request)

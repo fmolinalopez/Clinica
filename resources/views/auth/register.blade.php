@@ -4,7 +4,7 @@
     @if(Request::get('userType') == "user")
         <div class="container">
             <div class="row justify-content-md-center mt-5">
-                <div class="col-md-8">
+                <div class="col-lg-8">
                     <div class="card">
                         <div class="card-header">Registro de Usuario</div>
                         <div class="card-body">
@@ -16,7 +16,7 @@
                                 <div class="form-group row{{ $errors->has('name') ? ' has-error' : '' }}">
                                     <label for="name" class="col-lg-4 col-form-label text-lg-right">Nombre</label>
 
-                                    <div class="col-md-6">
+                                    <div class="col-lg-6">
                                         <input id="name" type="text" class="form-control" name="name"
                                                value="{{ old('name') }}" autofocus>
 
@@ -32,7 +32,7 @@
                                     <label for="lastName"
                                            class="col-lg-4 col-form-label text-lg-right">Apellidos</label>
 
-                                    <div class="col-md-6">
+                                    <div class="col-lg-6">
                                         <input id="lastName" type="text" class="form-control" name="lastName"
                                                value="{{ old('lastName') }}" autofocus>
 
@@ -48,7 +48,7 @@
                                     <label for="userName" class="col-lg-4 col-form-label text-lg-right">Nombre de
                                         Usuario</label>
 
-                                    <div class="col-md-6">
+                                    <div class="col-lg-6">
                                         <input id="userName" type="text" class="form-control" name="userName"
                                                value="{{ old('userName') }}" autofocus>
 
@@ -63,7 +63,7 @@
                                 <div class="form-group row{{ $errors->has('email') ? ' has-error' : '' }}">
                                     <label for="email" class="col-lg-4 col-form-label text-lg-right">E-Mail</label>
 
-                                    <div class="col-md-6">
+                                    <div class="col-lg-6">
                                         <input id="email" type="email" class="form-control" name="email"
                                                value="{{ old('email') }}">
 
@@ -78,7 +78,7 @@
                                 <div class="form-group row{{ $errors->has('num_sanitario') ? ' has-error' : '' }}">
                                     <label for="num_sanitario" class="col-lg-4 col-form-label text-lg-right">Nº Sanitario</label>
 
-                                    <div class="col-md-6">
+                                    <div class="col-lg-6">
                                         <input id="num_sanitario" type="text" class="form-control" name="num_sanitario"
                                                value="{{ old('num_sanitario') }}">
 
@@ -94,7 +94,7 @@
                                     <label for="birthdate" class="col-lg-4 col-form-label text-lg-right">Fecha de
                                         nacimiento</label>
 
-                                    <div class="col-md-6">
+                                    <div class="col-lg-6">
                                         <input id="birthdate" type="date" class="form-control" name="birthdate"
                                                value="{{ old('birthdate') }}" onblur="calcularEdad()" autofocus>
 
@@ -109,7 +109,7 @@
                                 <div class="form-group row{{ $errors->has('movil') ? ' has-error' : '' }}">
                                     <label for="movil" class="col-lg-4 col-form-label text-lg-right">Nº Teléfono</label>
 
-                                    <div class="col-md-6">
+                                    <div class="col-lg-6">
                                         <input id="movil" type="text" class="form-control" name="movil"
                                                value="{{ old('movil') }}" autofocus>
 
@@ -121,28 +121,15 @@
                                     </div>
                                 </div>
 
-                                <div id="dniDiv" hidden
-                                     class="form-group row{{ $errors->has('dni') ? ' has-error' : '' }}">
-                                    <label for="dni" class="col-lg-4 col-form-label text-lg-right">Dni (Obligatorio para
-                                        mayores de 14 años)</label>
+                                <div id="dniDiv">
 
-                                    <div class="col-md-6">
-                                        <input id="dni" type="text" class="form-control" name="dni"
-                                               value="{{ old('dni') }}" autofocus>
-
-                                        @if ($errors->has('dni'))
-                                            <div class="alert alert-danger">
-                                                <strong>{{ $errors->first('dni') }}</strong>
-                                            </div>
-                                        @endif
-                                    </div>
                                 </div>
 
                                 <div class="form-group row{{ $errors->has('password') ? ' has-error' : '' }}">
                                     <label for="password"
                                            class="col-lg-4 col-form-label text-lg-right">Contraseña</label>
 
-                                    <div class="col-md-6">
+                                    <div class="col-lg-6">
                                         <input id="password" type="password" class="form-control" name="password">
 
                                         @if ($errors->has('password'))
@@ -158,6 +145,7 @@
 
                                     <div class="col-lg-6">
                                         <input
+                                                id="password_confirmation"
                                                 type="password"
                                                 class="form-control{{ $errors->has('password_confirmation') ? ' is-invalid' : '' }}"
                                                 name="password_confirmation"
@@ -172,7 +160,7 @@
 
                                 <div class="form-group row">
                                     <div class="col-lg-6 offset-lg-4">
-                                        <button type="submit" class="btn btn-primary">
+                                        <button type="submit" class="btnRegister btn btn-primary">
                                             Registrarse
                                         </button>
                                     </div>
@@ -187,7 +175,7 @@
     @if(Request::get('userType') == "medico")
         <div class="container">
             <div class="row justify-content-md-center mt-5">
-                <div class="col-md-8">
+                <div class="col-lg-8">
                     <div class="card">
                         <div class="card-header">Registro de Medico</div>
                         <div class="card-body">
@@ -199,7 +187,7 @@
                                 <div class="form-group row{{ $errors->has('name') ? ' has-error' : '' }}">
                                     <label for="name" class="col-lg-4 col-form-label text-lg-right">Nombre</label>
 
-                                    <div class="col-md-6">
+                                    <div class="col-lg-6">
                                         <input id="name" type="text" class="form-control" name="name"
                                                value="{{ old('name') }}" autofocus>
 
@@ -215,7 +203,7 @@
                                     <label for="lastName"
                                            class="col-lg-4 col-form-label text-lg-right">Apellidos</label>
 
-                                    <div class="col-md-6">
+                                    <div class="col-lg-6">
                                         <input id="lastName" type="text" class="form-control" name="lastName"
                                                value="{{ old('lastName') }}" autofocus>
 
@@ -231,7 +219,7 @@
                                     <label for="userName" class="col-lg-4 col-form-label text-lg-right">Nombre de
                                         Usuario</label>
 
-                                    <div class="col-md-6">
+                                    <div class="col-lg-6">
                                         <input id="userName" type="text" class="form-control" name="userName"
                                                value="{{ old('userName') }}" autofocus>
 
@@ -246,7 +234,7 @@
                                 <div class="form-group row{{ $errors->has('email') ? ' has-error' : '' }}">
                                     <label for="email" class="col-lg-4 col-form-label text-lg-right">E-Mail</label>
 
-                                    <div class="col-md-6">
+                                    <div class="col-lg-6">
                                         <input id="email" type="email" class="form-control" name="email"
                                                value="{{ old('email') }}">
 
@@ -262,7 +250,7 @@
                                     <label for="especialidad"
                                            class="col-lg-4 col-form-label text-lg-right">Especialidad</label>
 
-                                    <div class="col-md-6">
+                                    <div class="col-lg-6">
                                         <input id="especialidad" type="text" class="form-control" name="especialidad"
                                                value="{{ old('especialidad') }}" autofocus>
 
@@ -278,7 +266,7 @@
                                     <label for="num_colegiado" class="col-lg-4 col-form-label text-lg-right">Nº de
                                         colegiado</label>
 
-                                    <div class="col-md-6">
+                                    <div class="col-lg-6">
                                         <input id="num_colegiado" type="text" class="form-control" name="num_colegiado"
                                                value="{{ old('num_colegiado') }}" onblur="calcularEdad()" autofocus>
 
@@ -293,7 +281,7 @@
                                 <div class="form-group row{{ $errors->has('movil') ? ' has-error' : '' }}">
                                     <label for="movil" class="col-lg-4 col-form-label text-lg-right">Nº Teléfono</label>
 
-                                    <div class="col-md-6">
+                                    <div class="col-lg-6">
                                         <input id="movil" type="text" class="form-control" name="movil"
                                                value="{{ old('movil') }}" autofocus>
 
@@ -309,7 +297,7 @@
                                     <label for="password"
                                            class="col-lg-4 col-form-label text-lg-right">Contraseña</label>
 
-                                    <div class="col-md-6">
+                                    <div class="col-lg-6">
                                         <input id="password" type="password" class="form-control" name="password">
 
                                         @if ($errors->has('password'))
@@ -340,7 +328,7 @@
 
                                 <div class="form-group row">
                                     <div class="col-lg-6 offset-lg-4">
-                                        <button type="submit" id="btnRegister" class="btn btn-primary">
+                                        <button type="submit" class="btnRegister btn btn-primary">
                                             Registrarse
                                         </button>
                                     </div>

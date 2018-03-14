@@ -51,5 +51,6 @@ Route::group(['middleware' => 'auth'], function (){
 
 Auth::routes();
 Route::post('/register/validar', 'UsersController@validarRegistroAsync');
+Route::get('/cargarDni', 'UsersController@obtenerDniField');
 
 //Route::get('/home', 'HomeController@index')->name('home');
