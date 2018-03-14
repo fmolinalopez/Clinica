@@ -26,11 +26,13 @@ function validateTarget(target) {
     console.log("input id: " + input.id);
     console.log(target.value);
     formData.append(input.id, input.value);
-    // $(target).parent().next(".spinner").addClass("sk-circle");
+    $(".spinner").prop("hidden", false);
+    $("#sendMessage").prop("hidden", true);
     axios.post('/message/validar',
         formData
     ).then(function (response) {
-        // $(target).parent().next(".spinner").removeClass("sk-circle");
+        $(".spinner").prop("hidden", true);
+        $("#sendMessage").prop("hidden", false);
         switch (input.id) {
             case "content":
                 gestionarErrores(target, response.data.content);
