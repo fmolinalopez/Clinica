@@ -35,6 +35,7 @@
         </form>
     </div>
     @push('scripts')
+        <script src="{{ asset('js/jquery.datetimepicker.full.js') }}" defer></script>
         <script src="{{ asset('js/pedirCita.js') }}" defer></script>
     @endpush
 @endsection

@@ -94,7 +94,7 @@
     <script src="{{ asset('js/app.js') }}"></script>
     <script src="{{ asset('js/edad.js') }}"></script>
     <script src="{{ asset('js/collapse.js') }}"></script>
-    <script src="{{ asset('js/jquery.datetimepicker.full.js') }}"></script>
+
 </body>
 
 </html>
