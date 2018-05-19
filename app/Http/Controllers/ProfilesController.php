@@ -15,7 +15,7 @@ class ProfilesController extends Controller
 
     public function __construct()
     {
-        $this->middleware( function($request, $next){
+        $this->middleware(function ($request, $next) {
             $this->user = auth()->user();
 
             return $next($request);
@@ -64,60 +64,104 @@ class ProfilesController extends Controller
         $user = User::findOrFail($this->user->id);
         $data = array_filter($request->all());
 
-        switch ($route) {
-            case 'personal':
-                if (isset($data['dni'])) {
-                    if (User::where('dni', $data['dni']) != null) {
-                        return redirect()->back()->with('error', 'El dni introducido ya existe');
+        if (!$user->esMedico) {
+            switch ($route) {
+                case 'personal':
+                    if (isset($data['dni'])) {
+                        if (User::where('dni', $data['dni'])->first() != null) {
+                            return redirect()->back()->with('error', 'El dni introducido ya existe');
+                        }
                     }
-                }
-                if (isset($data['movil'])) {
-                    if (User::where('movil', $data['movil']) != null) {
-                        return redirect()->back()->with('error', 'El movil introducido ya existe');
+                    if (isset($data['movil'])) {
+                        if (User::where('movil', $data['movil'])->first() != null) {
+                            return redirect()->back()->with('error', 'El movil introducido ya existe');
+                        }
                     }
-                }
-                $user->fill($data);
-                break;
-            case 'account':
-                if (isset($data['userName'])) {
-                    if (User::where('userName', $data['userName']) != null) {
-                        return redirect()->back()->with('error', 'El nombre de usuario introducido ya existe');
+                    $user->fill($data);
+                    break;
+                case 'account':
+                    if (isset($data['userName'])) {
+                        if (User::where('userName', $data['userName'])->first() != null) {
+                            return redirect()->back()->with('error', 'El nombre de usuario introducido ya existe');
+                        }
+                        $user->userName = $data['userName'];
                     }
-                    $user->userName = $data['userName'];
-                }
-                if (isset($data['email'])) {
-                    if (User::where('email', $data['email']) != null) {
-                        return redirect()->back()->with('error', 'El email introducido ya existe');
+                    if (isset($data['email'])) {
+                        if (User::where('email', $data['email'])->first() != null) {
+                            return redirect()->back()->with('error', 'El email introducido ya existe');
+                        }
+                        $user->email = $data['email'];
                     }
-                    $user->email = $data['email'];
-                }
-                if (array_key_exists("current_password", $data)) {
-                    if (!Hash::check($data['current_password'], $this->user->password)) {
-                        return redirect()->back()->with('error', 'La constraseña actual no es correcta');
+                    if (array_key_exists("current_password", $data)) {
+                        if (!Hash::check($data['current_password'], $this->user->password)) {
+                            return redirect()->back()->with('error', 'La constraseña actual no es correcta');
+                        }
+                        if (strcmp($data['current_password'], $request->get('password')) == 0) {
+                            return redirect()->back()->with('error', 'La nueva contraseña debe ser diferente de la antigua.');
+                        }
+                        if ($data['password'] !== $data['password_confirmation']){
+                            return redirect()->back()->with('error', 'Las nueva contraseña y la confirmacion deben coincidir');
+                        }
+                        $user->password = bcrypt($data['password']);
                     }
-                    if (strcmp($data['current_password'], $request->get('password')) == 0) {
-                        return redirect()->back()->with('error', 'La nueva contraseña debe ser diferente de la antigua.');
+                    break;
+                case 'avatar':
+                    $user->avatar = $data['avatar'];
+                    break;
+                case 'additional':
+                    if (isset($data['website'])) {
+                        $user->website = $data['website'];
                     }
-                    $user->password = bcrypt($data['password']);
-                }
-            case 'avatar':
-                $user->avatar = $data['avatar'];
-                break;
-            case 'additional':
-                if (isset($data['website'])) {
-                    $user->website = $data['website'];
-                }
-                if (isset($data['about'])) {
-                    $user->about = $data['about'];
-                }
-                break;
+                    if (isset($data['about'])) {
+                        $user->about = $data['about'];
+                    }
+                    break;
+            }
+        } else {
+            switch ($route) {
+                case 'personal':
+                    if (isset($data['movil'])) {
+                        if (User::where('movil', $data['movil'])->first() != null) {
+                            return redirect()->back()->with('error', 'El movil introducido ya existe');
+                        }
+                    }
+                    $user->fill($data);
+                    break;
+                case 'account':
+                    if (isset($data['userName'])) {
+                        if (User::where('userName', $data['userName'])->first() != null) {
+                            return redirect()->back()->with('error', 'El nombre de usuario introducido ya existe');
+                        }
+                        $user->userName = $data['userName'];
+                    }
+                    if (isset($data['email'])) {
+                        if (User::where('email', $data['email'])->first() != null) {
+                            return redirect()->back()->with('error', 'El email introducido ya existe');
+                        }
+                        $user->email = $data['email'];
+                    }
+                    if (array_key_exists("current_password", $data)) {
+                        if (!Hash::check($data['current_password'], $this->user->password)) {
+                            return redirect()->back()->with('error', 'La constraseña actual no es correcta');
+                        }
+                        if (strcmp($data['current_password'], $request->get('password')) == 0) {
+                            return redirect()->back()->with('error', 'La nueva contraseña debe ser diferente de la antigua.');
+                        }
+                        if ($data['password'] !== $data['password_confirmation']){
+                            return redirect()->back()->with('error', 'Las nueva contraseña y la confirmacion deben coincidir');
+                        }
+                        $user->password = bcrypt($data['password']);
+                    }
+                    break;
+                case 'avatar':
+                    $user->avatar = $data['avatar'];
+                    break;
+            }
         }
-
         $user->save();
         return redirect()
             ->route('profile.edit')
             ->with('exito', 'Perfil actualizado');
-
     }
 
     /**
@@ -172,7 +216,8 @@ class ProfilesController extends Controller
         }
     }
 
-    public function destroy(){
+    public function destroy()
+    {
         $this->user->delete();
 
         return redirect('/');

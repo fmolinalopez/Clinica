@@ -178,7 +178,7 @@
                         menos una </p>
                     <a href="/{{$user->userName}}/clinicas/elegir">Haz click aqui para seleccionar tus clinicas de
                         trabajo</a>
-                @endif
+                @else
                 <div class="row">
                     <div class="col-lg-12">
                         <p>¿Que desea hacer?</p>
@@ -194,6 +194,7 @@
                         <a href="/conversations" class="list-group-item list-group-item-action">Mostrar Conversaciones</a>
                     </div>
                 </div>
+                @endif
             @else
                 <div class="row">
                     <div class="col-lg-12">

@@ -15,10 +15,10 @@ function calcularEdad() {
         }).catch(function (error) {
             console.log(error);
         });
-        // dniDiv.hidden = false;
-        // dniField.required = true;
+        dniDiv.hidden = false;
+        dniField.required = true;
     } else {
-        // dniDiv.hidden = true;
-        // dniField.required = false;
+        dniDiv.hidden = true;
+        dniField.required = false;
     }
 }

@@ -70,9 +70,9 @@ class CreateUserRequest extends FormRequest
             $mensajesNumSanitario,
             $mensajesBirthdate,
             $mensajesDni,
-            $mesnajesMovil,
-            $mesnajesPassword,
-            $mesnajesPasswordConfirmation
+            $mesnajesMovil
+//            $mesnajesPassword
+//            $mesnajesPasswordConfirmation
         );
         return $mensajes;
     }
