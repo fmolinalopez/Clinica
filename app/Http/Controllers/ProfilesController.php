@@ -106,7 +106,14 @@ class ProfilesController extends Controller
                     }
                     break;
                 case 'avatar':
-                    $user->avatar = $data['avatar'];
+                    if (isset($data['avatar'])){
+                        if ($data['avatar'] === '') {
+                            return redirect()->back()->with('error', 'Debes introducir una imagen');
+                        }
+                        $user->avatar = $data['avatar'];
+                    } else {
+                        return redirect()->back()->with('error', 'Debes introducir una imagen');
+                    }
                     break;
                 case 'additional':
                     if (isset($data['website'])) {
@@ -154,7 +161,14 @@ class ProfilesController extends Controller
                     }
                     break;
                 case 'avatar':
-                    $user->avatar = $data['avatar'];
+                    if (isset($data['avatar'])){
+                        if ($data['avatar'] === '') {
+                            return redirect()->back()->with('error', 'Debes introducir una imagen');
+                        }
+                        $user->avatar = $data['avatar'];
+                    } else {
+                        return redirect()->back()->with('error', 'Debes introducir una imagen');
+                    }
                     break;
             }
         }

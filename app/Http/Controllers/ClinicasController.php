@@ -30,7 +30,7 @@ class ClinicasController extends Controller
         $clinicas = Clinica::all();
 
         return view('clinicas.elegirClinica', [
-            'clinicas' => $clinicas
+            'clinicas' => $clinicas,
         ]);
     }
 
