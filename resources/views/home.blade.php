@@ -186,12 +186,12 @@
 
                     <div class="list-group col-lg-6">
                         <a href="/profile" class="list-group-item list-group-item-action">Ir al perfil</a>
-                        <a href="citas" class="list-group-item list-group-item-action">Mostrar citas</a>
+                        <a href="citas" class="list-group-item list-group-item-action mt-2">Mostrar citas</a>
                     </div>
 
                     <div class="list-group col-lg-6">
                         <a href="/{{$user->userName}}/clinicas/elegir" class="list-group-item list-group-item-action">Modificar Clinicas</a>
-                        <a href="/conversations" class="list-group-item list-group-item-action">Mostrar Conversaciones</a>
+                        <a href="/conversations" class="list-group-item list-group-item-action mt-2">Mostrar Conversaciones</a>
                     </div>
                 </div>
                 @endif
