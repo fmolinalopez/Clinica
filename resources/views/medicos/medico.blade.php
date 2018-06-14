@@ -3,7 +3,7 @@
             <img src="{{$medico['avatar']}}" alt="Imagen del médico">
         </div>
         <div class="col info-medico">
-            <p><strong>Nombre:</strong><a href="/{{ $medico->nombre  }}/clinicas">{{ $medico['name'] }}</a></p>
+            <p><strong>Nombre:</strong>{{ $medico['name'] }}</p>
             <p><strong>Email:</strong>{{ $medico['email'] }}</p>
             <p><strong>Especialidad:</strong> {{ $medico['especialidad'] }}</p>
             <p><strong>Clinicas:</strong>
