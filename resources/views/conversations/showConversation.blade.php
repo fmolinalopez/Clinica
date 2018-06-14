@@ -6,9 +6,12 @@
 
             @forelse($user->conversations as $conversation)
                 <div class="col-lg-4 centro border-bottom">
-                    <p>Conversacion con el paciente <a
-                                href=/conversation/{{$conversation->id}}/messages>{{\App\Conversation::obtenerPaciente($conversation)->name}} {{\App\Conversation::obtenerPaciente($conversation)->lastName}}</a>
-                    </p>
+                    <p>Conversacion con el paciente {{\App\Conversation::obtenerPaciente($conversation)->name}} {{\App\Conversation::obtenerPaciente($conversation)->lastName}}</p>
+                    <a href=/conversation/{{$conversation->id}}/messages>
+                        <button class="btn btn-primary">
+                        Ir a la conversacion
+                        </button>
+                    </a>
                 </div>
             @empty
                 <div class="text-center mt-5">
@@ -18,9 +21,12 @@
             @else
                 @forelse($user->conversations as $conversation)
                     <div class="col-lg-4 centro border-bottom">
-                        <p>Conversacion con el doctor <a
-                                    href=/conversation/{{$conversation->id}}/messages>{{\App\Conversation::obtenerMedico($conversation)->name}} {{\App\Conversation::obtenerMedico($conversation)->lastName}}</a>
-                        </p>
+                        <p>Conversacion con el doctor {{\App\Conversation::obtenerMedico($conversation)->name}} {{\App\Conversation::obtenerMedico($conversation)->lastName}}</p>
+                        <a href=/conversation/{{$conversation->id}}/messages>
+                            <button class="btn btn-primary">
+                                Ir a la conversacion
+                            </button>
+                        </a>
                     </div>
                 @empty
                     <div class="text-center mt-5">

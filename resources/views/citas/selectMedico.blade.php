@@ -6,7 +6,7 @@
         <select class="custom-select" id="medicos" name="medico">
             <option>Elija un médico...</option>
             @foreach($selectedClinica->users  as $medico)
-                <option value="{{$medico->id}}">Nombre: {{$medico->name}}</option>
+                <option value="{{$medico->id}}">{{$medico->name}}</option>
             @endforeach
         </select>
     </div>
