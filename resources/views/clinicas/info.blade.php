@@ -2,6 +2,6 @@
 
 @section('content')
     <div class="text-center titulo">
-        <h1>Clinica: {{$clinica->nombre}}</h1>
+        <h1>Por implementar</h1>
     </div>
 @endsection
