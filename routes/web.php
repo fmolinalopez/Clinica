@@ -18,6 +18,8 @@ Route::get('/{nombreMedico}/clinicas', 'MedicosController@clinicas')->name('clin
 
 Route::get('/user/{userName}', 'UsersController@index')->name('userInfo');
 
+Route::get('/medicos', 'UsersController@listaMedicos');
+
 Route::group(['middleware' => 'auth'], function (){
     Route::get('/{user}/clinicas/elegir', 'ClinicasController@elegirClinicas');
     Route::post('/{user}/clinicas/elegir', 'ClinicasController@sincronizarClinicas');

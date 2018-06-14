@@ -134,6 +134,15 @@ class UsersController extends Controller
         return array();
     }
 
+    public function listaMedicos() {
+
+        $medicos = User::where('esMedico', 1)->paginate(10);
+
+        return view('medicos.lista', [
+            'medicos' => $medicos
+        ]);
+    }
+
     /**
      * Remove the specified resource from storage.
      *

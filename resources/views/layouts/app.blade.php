@@ -22,7 +22,9 @@
         <nav class="navbar navbar-expand-lg navbar-light bg-primary">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
+                    <div class="imageContainer">
+                        <img src="https://i.imgur.com/uVV1H8W.png"  class="imagen" alt="Clinica">
+                    </div>
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -30,14 +32,14 @@
                 </button>
 
                 @if (!Auth::guest())
-                <div class="navbar navbar-toggleable-md navbar-light bg-faded">
+              {{--  <div class="navbar navbar-toggleable-md navbar-light bg-faded">
                     <ul class="navbar-nav">
-                        {{--<li class="nav-item active"><a href="{{ route('addMedico') }}" class="nav-link">Añadir Medico</a></li>--}}
+                        --}}{{--<li class="nav-item active"><a href="{{ route('addMedico') }}" class="nav-link">Añadir Medico</a></li>--}}{{--
                         @if(!Auth::user()->esMedico)
                             <li class="nav-item active"><a href="{{ route('askCita') }}" class="nav-link">Pedir Cita</a></li>
                         @endif
                     </ul>
-                </div>
+                </div>--}}
 
                 <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
                     <ul class="navbar-nav">
