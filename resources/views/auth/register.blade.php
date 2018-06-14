@@ -33,7 +33,7 @@
 
                                 <div class="form-group row{{ $errors->has('lastName') ? ' has-error' : '' }}">
                                     <label for="lastName"
-                                           class="col-lg-4 col-form-label text-lg-right">Apellidos</label>
+                                           class="col-lg-4 col-form-label text-lg-right">Apellido</label>
 
                                     <div class="col-lg-6">
                                         <input id="lastName" type="text" class="form-control" name="lastName"
@@ -245,7 +245,7 @@
 
                                 <div class="form-group row{{ $errors->has('lastName') ? ' has-error' : '' }}">
                                     <label for="lastName"
-                                           class="col-lg-4 col-form-label text-lg-right">Apellidos</label>
+                                           class="col-lg-4 col-form-label text-lg-right">Apellido</label>
 
                                     <div class="col-lg-6">
                                         <input id="lastName" type="text" class="form-control" name="lastName"
