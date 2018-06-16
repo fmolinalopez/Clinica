@@ -83,13 +83,54 @@
                     {{--<div class="text-right mt-1">--}}
                         {{--<a href="https://www.facebook.com/"><img src="{{ asset('images/facebook.png') }}" class="footerIcon" alt="facebook"></a>--}}
                     {{--</div>--}}
-                    {{--<div class="text-right mt-1">--}}
+                    {{--<div class="text-right mr-1">--}}
                         {{--<a href="https://www.twitter.com"><img src="{{ asset('images/twitter.png') }}" class="footerIcon" alt="twitter"></a>--}}
                     {{--</div>--}}
                 {{--</div>--}}
         {{--</div>--}}
-        {{--<p class="text-center mt-3"> Copyright © All right reserved. </p>--}}
+        {{--<p class="text-center mb-3"> Copyright © All right reserved. </p>--}}
     {{--</footer>--}}
+
+    <footer id="myFooter" class="fixed-bottom bg-primary">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-3">
+                    <a href="{{ url('/') }}">
+                        <div class="imageContainer">
+                            <img src="https://i.imgur.com/uVV1H8W.png"  class="imagen" alt="Clinica">
+                        </div>
+                    </a>
+                </div>
+                <div class="col-sm-3">
+                    <h5>Get started</h5>
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Sign up</a></li>
+                        <li><a href="#">Downloads</a></li>
+                    </ul>
+                </div>
+                <div class="col-sm-3">
+                    <h5>About us</h5>
+                    <ul>
+                        <li><a href="#">Company Information</a></li>
+                        <li><a href="#">Contact us</a></li>
+                        <li><a href="#">Review</a></li>
+                    </ul>
+                </div>
+                <div class="col-sm-3">
+                    <h5>Support</h5>
+                    <ul>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Help desk</a></li>
+                        <li><a href="#">Forums</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="footer-copyright">
+            <p>© 2016 Copyright Text </p>
+        </div>
+    </footer>
 
 
     <!-- Scripts -->
