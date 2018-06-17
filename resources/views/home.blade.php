@@ -5,7 +5,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12 col-sm-12 col-xs-12">
-                    <h1 class="page-header text-center titulo">Bienvenido a la aplicacion</h1>
+                    <h1 class="page-header text-center titulo">Bienvenido a la aplicación</h1>
                     <h3 class="text-center">¿Eres médico o paciente?</h3>
                 </div>
             </div>
@@ -192,6 +192,10 @@
                     <div class="list-group col-lg-6">
                         <a href="/{{$user->userName}}/clinicas/elegir" class="list-group-item list-group-item-action">Modificar Clinicas</a>
                         <a href="/conversations" class="list-group-item list-group-item-action mt-2">Mostrar Conversaciones</a>
+                    </div>
+
+                    <div class="list-group col-lg-6 mt-2 centro">
+                        <a href="/medicos" class="list-group-item list-group-item-action">Ver lista de medicos</a>
                     </div>
                 </div>
                 @endif
