@@ -121,7 +121,7 @@ composer install
 
 Una vez que estemos conectados a la Base de Datos y todos los componentes estén ya instalados, podrá proceder a utilizar
 el siguiente comando en el proyecto, este comando _"llenará"_ la base de datos gracias al uso de las factorías, con 
-información generada aleatoriamente con**$faker**.
+información generada aleatoriamente con **$faker**.
 
 ```
 php artisan migrate:refresh --seed
